@@ -11,6 +11,8 @@
   const METHOD_LABEL = { rule: '규칙 기반', gemini: 'Gemini AI' };
 
   const $ = (id) => document.getElementById(id);
+  // 통합 대시보드(dashboard.js)에 화면 상태 변화를 알린다. 문장 원문은 담지 않는다.
+  const emit = (name, detail) => { try { document.dispatchEvent(new CustomEvent('meditask:' + name, { detail: detail || null })); } catch (e) { /* 무시 */ } };
   const nextFrame = () => new Promise((r) => requestAnimationFrame(() => setTimeout(r, 0)));
 
   const state = {
@@ -69,6 +71,7 @@
       state.keywords = keywords;
       $('footer-version').textContent = 'criteria v' + criteria.version;
       renderExamples();
+      emit('criteria', { ok: true });
       $('classify-data-error').hidden = true;
       setClassifyState(currentText().trim() ? 'typing' : 'idle');
     } catch (err) {
@@ -114,6 +117,7 @@
     viewNames().forEach((v) => { $('view-' + v).hidden = v !== name; });
     if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
     window.scrollTo(0, 0);
+    emit('view', { view: name });
   }
 
   // ======================= 업무 분류 =======================
@@ -154,6 +158,7 @@
     if (el.value.length > max) el.value = el.value.slice(0, max);
     $('char-count').textContent = el.value.length + ' / ' + max + '자';
     // 입력이 바뀌면 이전 결과는 즉시 숨긴다(새 입력의 결과로 오해하지 않도록).
+    if (state.lastResult) emit('result-cleared');
     state.lastResult = null;
     if (!state.criteria) return setClassifyState($('view-classify').dataset.state === 'data-error' ? 'data-error' : 'loading-data');
     setClassifyState(el.value.trim() ? 'typing' : 'idle');
@@ -214,6 +219,7 @@
       state.lastResult = { masked: masked, result: result };
       renderResult(state.lastResult);
       setClassifyState('done');
+      emit('classified');
     } catch (err) {
       $('classify-error-msg').textContent = '규칙 기반 분류 중 오류가 발생했습니다: ' + err.message;
       setClassifyState('error');
@@ -317,6 +323,10 @@
   function renderModelSelects() {
     fillSelect($('model-select'), state.selectedModel);
     fillSelect($('eval-model-select'), state.evalModel);
+    // 드롭다운은 좁은 화면에서 이름이 잘려 보일 수 있어, 선택한 모델 이름·ID 전체를 아래에 한 번 더 보여 준다
+    const hint = (id) => { const m = modelInfo(id); return m ? '선택: ' + m.displayName + ' · ' + m.id + (m.stage === 'preview' ? ' · Preview' : '') : ''; };
+    $('model-id-hint').textContent = state.models.status === 'ready' ? hint(state.selectedModel) : '';
+    $('eval-model-id-hint').textContent = state.models.status === 'ready' ? hint(state.evalModel) : '';
     if (state.aiRunning) $('eval-model-select').disabled = true;
     const st = $('model-status');
     st.classList.toggle('model-status-error', state.models.status === 'error');
@@ -404,6 +414,7 @@
 
   function resetAll() {
     input().value = '';
+    if (state.lastResult) emit('result-cleared');
     state.lastResult = null;
     $('classify-error-msg').textContent = '';
     $('copy-status').textContent = '';
@@ -661,6 +672,7 @@
         await nextFrame();
       }
       runs.push({ run: runNo, model_requested: modelId, model: model, started_at: started, finished_at: new Date().toISOString(), requests: requests, rows: rows });
+      emit('ai-history');
       renderAIColumns();
       renderModelTable();
       const failed = rows.filter((r) => r.failed).length;
@@ -756,14 +768,21 @@
     const body = $('model-compare-body');
     if (!body || !state.answers || !state.criteria || !evalFields()) return;
     body.textContent = '';
+    // 칸마다 열 이름(data-label)을 달아 모바일에서는 카드처럼 쌓아 보여 준다 (표 내용은 같음)
+    const LABELS = ['모델', '실행', '업무 유형', '긴급도', '완전 일치', '실패', '평균 응답'];
     const row = (cells, cls) => {
       const tr = document.createElement('tr');
       if (cls) tr.className = cls;
       cells.forEach((c, i) => {
         const el = document.createElement(i === 0 ? 'th' : 'td');
         if (i === 0) el.scope = 'row';
-        if (c && typeof c === 'object') { el.textContent = c.text; if (c.tag) { const t = document.createElement('span'); t.className = 'stage-tag'; t.textContent = c.tag; el.appendChild(t); } }
-        else el.textContent = c;
+        el.setAttribute('data-label', LABELS[i]);
+        if (c && typeof c === 'object') {
+          const name = document.createElement('span'); name.className = 'model-name'; name.textContent = c.text;
+          el.appendChild(name);
+          if (c.tag) { const t = document.createElement('span'); t.className = 'stage-tag'; t.textContent = c.tag; el.appendChild(t); }
+          if (c.sub) { const sub = document.createElement('span'); sub.className = 'model-id'; sub.textContent = c.sub; el.appendChild(sub); }
+        } else el.textContent = c;
         if (i >= 2) el.className = 'has-value';
         tr.appendChild(el);
       });
@@ -777,7 +796,7 @@
       h.runs.forEach((run) => {
         const s = scoreRows(run.rows);
         const ms = avgMs(run);
-        row([{ text: (info ? info.displayName + ' · ' : '') + h.model, tag: info && info.stage === 'preview' ? 'Preview' : '' }, run.run + '차',
+        row([{ text: info ? info.displayName : h.model, sub: info ? h.model : '', tag: info && info.stage === 'preview' ? 'Preview' : '' }, run.run + '차',
           pctText(s.category_correct, s.total), pctText(s.urgency_correct, s.total), pctText(s.exact_match, s.total), s.failed + '건',
           ms == null ? '측정값 없음' : (ms / 1000).toFixed(2) + '초']);
       });
@@ -785,9 +804,9 @@
     $('model-compare-count').textContent = hist.length + '개 모델';
   }
 
-  function downloadAIReport() {
+  function buildAIReport() {
     const hist = historyEntries();
-    if (!hist.length) return;
+    if (!hist.length || !state.answers || !state.criteria) return null;
     const itemOut = (r) => ({
       id: r.id, text_masked: r.text, gold_category: r.goldCat, gold_urgency: r.goldUrg,
       pred_category: r.predCat, pred_urgency: r.predUrg,
@@ -825,6 +844,12 @@
         hist.flatMap((h) => h.runs.map((run) => ({ model_id: h.model, run: run.run, summary: scoreRows(run.rows), avg_response_ms: avgMs(run) })))),
       notes: { avg_response_ms: '브라우저에서 /api/classify 요청 1회(10문장)를 잰 왕복 시간의 평균 (성공 요청만)', history: '평가 이력은 브라우저 메모리에만 있으며 새로고침하면 사라짐' }
     };
+    return report;
+  }
+
+  function downloadAIReport() {
+    const report = buildAIReport();
+    if (!report) return;
     const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json;charset=utf-8' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -1290,7 +1315,7 @@
     $('eval-model-select').addEventListener('change', (e) => {
       if (state.aiRunning || !modelInfo(e.target.value)) { renderModelSelects(); return; }
       state.evalModel = e.target.value; sessionSet('evalModel', state.evalModel);
-      renderAIColumns(); updateAIButton(); updateEvalCostNote();
+      renderModelSelects(); renderAIColumns(); updateAIButton();
     });
     $('criteria-retry').addEventListener('click', loadClassifierData);
   }
@@ -1308,6 +1333,27 @@
     setMethod(sessionGet('method') === 'rule' ? 'rule' : 'gemini');
     loadModels();
   }
+
+  // 통합 대시보드가 쓰는 읽기 전용 창구: 가린 문장과 분류 결과만 넘기고 원문은 넘기지 않는다.
+  window.MediApp = {
+    criteria: () => state.criteria,
+    modelName: (id) => { const m = modelInfo(id); return m ? m.displayName : null; },
+    lastResult: () => {
+      const r = state.lastResult;
+      if (!r || !state.criteria) return null;
+      const res = r.result;
+      return {
+        text_masked: r.masked.masked, mask_count: r.masked.total,
+        category: res.category, urgency: res.urgency, reason: res.reason,
+        method: res.method === 'gemini' ? 'gemini' : 'rule', fallback: !!res.fallback,
+        model: res.method === 'gemini' ? (res.model || null) : null,
+        urgency_step: res.detail && res.detail.urgencyStep ? res.detail.urgencyStep : null,
+        criteria_version: state.criteria.version
+      };
+    },
+    aiReport: () => buildAIReport(),
+    showView: (name) => showView(name)
+  };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

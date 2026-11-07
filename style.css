@@ -569,3 +569,116 @@ h1, h2, h3 { margin: 0; }
   .panel-head .pill { padding: 0.25rem 0.5rem; }
   .footer-inner .code-num { font-size: 12px; }
 }
+
+/* =====================================================================
+   텍스트 렌더링 보정 (모든 화면 폭)
+   - 한글은 낱말 단위로 줄바꿈(keep-all), 공백 없는 긴 URL·영문은 넘칠 때만 끊는다(break-word).
+   - overflow-wrap:anywhere 는 최소 너비를 1글자로 만들어 표·플렉스에서 글자 단위 줄바꿈을 일으키므로 쓰지 않는다.
+   ===================================================================== */
+body { word-break: keep-all; overflow-wrap: break-word; }
+.masked-text, .quote { word-break: keep-all; overflow-wrap: break-word; }
+#result-reason, .item-reason, .panel p, .case p, .kv p, .kv-list li, .flow-check, .note-row .label-xs { overflow-wrap: break-word; min-width: 0; }
+.method-row .label-xs { overflow-wrap: break-word; }
+.method-row strong { white-space: normal; overflow-wrap: break-word; }
+.model-id-hint { color: var(--on-surface-variant); overflow-wrap: break-word; }
+.model-id-hint:empty { display: none; }
+
+/* 비교표: 머리글·숫자 칸은 줄바꿈하지 않는다 (표 영역만 가로 스크롤) */
+.compare thead th, .compare tbody td { white-space: nowrap; }
+.model-table { min-width: 0; width: 100%; }
+.model-table thead th { white-space: nowrap; }
+.model-table tbody th { white-space: normal; max-width: none; word-break: keep-all; overflow-wrap: break-word; line-height: 16px; min-width: 11rem; }
+.model-table tbody td { white-space: nowrap; }
+.model-table .model-name { font-weight: 600; }
+.model-table .model-id { display: block; margin-top: 0.125rem; font-family: var(--font-mono); font-size: 10px; line-height: 14px; color: var(--on-surface-variant); font-weight: 500; overflow-wrap: anywhere; }
+.model-table .stage-tag { white-space: nowrap; vertical-align: 1px; }
+
+/* 결과 자리 안내 카드: 2단 화면에서만 */
+.result-placeholder { display: none; }
+
+/* 모바일: 모델별 비교표를 행마다 카드로 쌓는다 (가로 스크롤·글자 겹침 없음) */
+@media (max-width: 767px) {
+  .model-table, .model-table tbody, .model-table tr, .model-table th, .model-table td { display: block; width: 100%; }
+  .model-table { border-spacing: 0; }
+  .model-table thead { display: none; } /* 각 칸이 자기 열 이름(data-label)을 함께 보여 준다 */
+  .model-table tbody { display: flex; flex-direction: column; gap: 0.5rem; }
+  .model-table tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.375rem 0.5rem; padding: 0.625rem 0.75rem; border-radius: var(--radius-lg); background: var(--surface-low); }
+  .model-table tr.is-baseline { background: var(--primary-fixed); }
+  .model-table tbody th { grid-column: 1 / -1; min-width: 0; padding: 0; font-size: 13px; text-align: left; }
+  .model-table tbody td { display: flex; flex-direction: column; align-items: flex-start; gap: 0.125rem; padding: 0; text-align: left; font-size: 13px; }
+  .model-table tbody td::before { content: attr(data-label); font-family: var(--font); font-size: 10px; line-height: 14px; font-weight: 500; color: var(--on-surface-variant); }
+  /* 모바일 키보드가 열렸을 때 하단 고정 영역이 입력창을 가리지 않게 */
+  body:has(.textarea:focus) .app-footer { display: none; }
+}
+#model-compare-card .table-scroll { overflow-x: auto; }
+@media (max-width: 767px) { #model-compare-card .table-scroll { overflow: visible; } }
+.textarea { scroll-margin-bottom: calc(var(--footer-h) + 1rem); }
+.app-main { min-height: 100dvh; }
+
+/* =====================================================================
+   태블릿 (768px ~ 1023px): 넓은 1단 + 일부 2~4단 카드
+   ===================================================================== */
+@media (min-width: 768px) {
+  :root { --margin: 1.5rem; }
+  .shell { max-width: 760px; }
+  .brand-tag { display: inline-flex; }
+  .metrics-block > .grid-2 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #error-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  #cr-categories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .chips-block #example-chips { gap: 6px 8px; }
+  .compare { min-width: 0; }
+}
+
+/* =====================================================================
+   데스크톱 (1024px 이상): 한 줄 상단 내비게이션 + 다단 레이아웃
+   ===================================================================== */
+@media (min-width: 1024px) {
+  :root { --header-h: 4rem; --margin: 2rem; }
+  .shell { max-width: 1200px; }
+
+  /* 상단: 브랜드 | 탭 | 분류 방식 표시 를 한 줄로 */
+  .header-inner { flex-direction: row; align-items: stretch; justify-content: flex-start; gap: 2rem; }
+  .brand-row { display: contents; }
+  .brand { order: 0; align-self: center; }
+  .tabs { order: 1; height: auto; display: flex; gap: 0.25rem; margin: 0 auto; }
+  .tab { min-width: 8.5rem; padding: 0 1.25rem; border-radius: 0; font-size: 15px; }
+  .tab.is-active { font-size: 15px; }
+  .engine-pill { order: 2; align-self: center; }
+
+  .app-main { padding-top: calc(var(--header-h) + var(--safe-top) + 0.5rem); }
+  .page-title { font-size: 24px; line-height: 32px; }
+
+  /* 업무 분류: 입력(왼쪽) | 결과(오른쪽, 스크롤해도 따라옴) */
+  #view-classify { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 1.5rem; row-gap: 1rem; align-items: start; }
+  #view-classify > .page-title, #view-classify > #classify-data-error { grid-column: 1 / -1; }
+  #view-classify > #input-card { grid-column: 1; grid-row: 2 / span 4; }
+  #view-classify > #classify-loading, #view-classify > #classify-error, #view-classify > #classify-result, #view-classify > .result-placeholder { grid-column: 2; position: sticky; top: calc(var(--header-h) + 1rem); }
+  #view-classify[data-state="idle"] > .result-placeholder,
+  #view-classify[data-state="typing"] > .result-placeholder { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 18rem; gap: 0.5rem; background: transparent; border: 2px dashed var(--surface-highest); box-shadow: none; }
+
+  /* 성능 평가: 실행·지표 2단, 비교표 2단, 오분류 3단 */
+  #view-evaluate { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 1.5rem; row-gap: 1.25rem; align-items: start; }
+  #view-evaluate > .title-block, #view-evaluate > #eval-error, #view-evaluate > #eval-progress, #view-evaluate > #error-section { grid-column: 1 / -1; }
+  #view-evaluate > .eval-run-card { grid-column: 1; }
+  #view-evaluate > .metrics-block { grid-column: 2; }
+  #view-evaluate > .compare-card { grid-column: 1; }
+  #view-evaluate > #model-compare-card { grid-column: 2; }
+  .metrics-block > .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #error-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .filter-scroll { margin: 0; padding: 0 0 0.25rem; }
+
+  /* 분류 기준: 2단 */
+  #criteria-content { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: 1.5rem; align-items: start; }
+  #criteria-content > .ver-line { grid-column: 1 / -1; }
+  #cr-categories { grid-template-columns: 1fr; }
+  #view-criteria > .title-block { max-width: 48rem; }
+}
+
+@media (min-width: 1280px) {
+  .metrics-block > .grid-2 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #view-evaluate > .metrics-block .metric { min-height: 7.5rem; }
+  #error-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 1440px) {
+  .shell { max-width: 1280px; }
+}

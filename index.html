@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
   <!-- 공통 헤더: 브랜드 + 탭 -->
@@ -40,6 +41,9 @@
         </button>
         <button class="tab" role="tab" id="tab-criteria" aria-controls="view-criteria" aria-selected="false" tabindex="-1" data-view="criteria" type="button">
           <span class="icon">menu_book</span><span>분류 기준</span>
+        </button>
+        <button class="tab" role="tab" id="tab-dashboard" aria-controls="view-dashboard" aria-selected="false" tabindex="-1" data-view="dashboard" type="button">
+          <span class="icon">space_dashboard</span><span>통합 대시보드</span>
         </button>
       </nav>
     </div>
@@ -97,6 +101,7 @@
           <div class="model-row" id="model-row">
             <label class="label-xs muted" for="model-select">Gemini 모델</label>
             <select class="select" id="model-select" disabled><option>모델 목록 불러오는 중…</option></select>
+            <p class="hint model-id-hint" id="model-id-hint"></p>
             <p class="hint" id="model-status" role="status"></p>
           </div>
         </div>
@@ -136,6 +141,13 @@
       </div>
 
       <!-- 분류 결과 -->
+      <!-- PC·태블릿 2단 화면에서 결과 자리 안내 (모바일에서는 표시하지 않음) -->
+      <div class="card result-placeholder" id="result-placeholder" aria-hidden="true">
+        <span class="empty-icon"><span class="icon">fact_check</span></span>
+        <span class="title-sm">분류 결과가 여기에 표시됩니다</span>
+        <span class="label-xs muted">업무 내용을 입력하고 업무 분류하기를 누르세요.</span>
+      </div>
+
       <div class="card result-card" id="classify-result" hidden aria-live="polite">
         <div class="between">
           <div class="row gap-8">
@@ -193,6 +205,14 @@
           </button>
         </div>
         <p class="label-xs copy-status" id="copy-status" role="status" aria-live="polite"></p>
+
+        <!-- 통합 대시보드로 저장 (누를 때만 저장, 가린 문장만) -->
+        <div class="save-row">
+          <button class="btn btn-small btn-secondary" id="save-task-btn" type="button" disabled>
+            <span class="icon icon-16" id="save-task-icon" aria-hidden="true">bookmark_add</span><span id="save-task-label">업무 저장</span>
+          </button>
+          <p class="label-xs save-status" id="save-task-status" role="status" aria-live="polite"></p>
+        </div>
       </div>
     </section>
 
@@ -204,7 +224,7 @@
       </div>
 
       <!-- 평가 실행 -->
-      <div class="card">
+      <div class="card eval-run-card">
         <div class="between">
           <div class="row gap-8">
             <span class="square-icon"><span class="icon icon-18">play_circle</span></span>
@@ -218,6 +238,7 @@
         <div class="model-row">
           <label class="label-xs muted" for="eval-model-select">평가할 Gemini 모델</label>
           <select class="select" id="eval-model-select" disabled><option>모델 목록 불러오는 중…</option></select>
+          <p class="hint model-id-hint" id="eval-model-id-hint"></p>
         </div>
         <div class="stack-10 eval-actions">
           <button class="btn btn-primary btn-lg" id="rule-eval-btn" type="button" disabled>
@@ -257,7 +278,7 @@
       </div>
 
       <!-- 핵심 지표 -->
-      <div class="stack-8">
+      <div class="stack-8 metrics-block">
         <div class="between">
           <span class="title-sm">핵심 지표 요약</span>
           <span class="label-xs muted" id="metrics-state">채점 전 상태</span>
@@ -291,7 +312,7 @@
       </div>
 
       <!-- 규칙 vs AI 비교 -->
-      <div class="card">
+      <div class="card compare-card">
         <div class="between">
           <div class="row gap-6"><span class="icon icon-18 text-primary">compare_arrows</span><span class="title-sm">평가 항목별 비교 (규칙 vs AI)</span></div>
           <span class="pill pill-soft" id="compare-state">미채점</span>
@@ -420,13 +441,26 @@
         <p class="ver-line" id="cr-version"></p>
       </div>
     </section>
+
+    <!-- ============ 통합 대시보드 (dashboard.js가 채운다) ============ -->
+    <section id="view-dashboard" class="view" role="tabpanel" aria-labelledby="tab-dashboard" hidden>
+      <div class="title-block">
+        <div class="row gap-6 text-primary"><span class="icon icon-18">space_dashboard</span><span class="label-xs eyebrow">Integrated Dashboard</span></div>
+        <h1 class="page-title">통합 대시보드</h1>
+      </div>
+      <div class="note-row db-storage-note">
+        <span class="icon icon-15 text-secondary">devices</span>
+        <span class="label-xs">기록은 <strong>이 기기의 이 브라우저에만</strong> 저장됩니다. 다른 직원·다른 기기와 공유되지 않고, 서버에도 보내지 않습니다. 요청 문장은 개인정보를 가린 문장만 저장합니다.</span>
+      </div>
+      <div id="db-root"><p class="label-xs muted">대시보드를 준비하는 중…</p></div>
+    </section>
   </main>
 
   <footer class="app-footer">
     <div class="shell footer-inner">
       <div class="row gap-6">
         <span class="icon icon-16 text-secondary">shield</span>
-        <span class="label-xs muted">가상 업무 문장 전용 · 입력 내용 저장 안 함</span>
+        <span class="label-xs muted">가상 업무 문장 전용 · 서버에 저장 안 함</span>
       </div>
       <span class="code-num muted" id="footer-version">criteria v1</span>
     </div>
@@ -450,5 +484,6 @@
   <script src="mask.js"></script>
   <script src="rules.js"></script>
   <script src="app.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>
