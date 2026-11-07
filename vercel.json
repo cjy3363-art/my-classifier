@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/classify.py": {
+      "includeFiles": "{criteria.json,api/models.py}",
+      "maxDuration": 90
+    },
+    "api/models.py": {
+      "maxDuration": 30
+    }
+  }
+}

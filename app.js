@@ -8,7 +8,7 @@
   // 아래 두 표는 화면 표시용이며, 목록에 없는 값이 와도 기본 아이콘·순서 기반 색상으로 동작한다.
   const ICON_BY_INDEX = ['add_notes', 'edit_document', 'campaign', 'monitoring', 'groups', 'more_horiz'];
   const URGENCY_CLASS_BY_INDEX = ['u-high', 'u-mid', 'u-low'];
-  const METHOD_LABEL = { rule: '규칙 기반' };
+  const METHOD_LABEL = { rule: '규칙 기반', gemini: 'Gemini AI' };
 
   const $ = (id) => document.getElementById(id);
   const nextFrame = () => new Promise((r) => requestAnimationFrame(() => setTimeout(r, 0)));
@@ -21,8 +21,27 @@
     evalRows: null,
     filter: 'all',
     classifying: false,
-    evaluating: false
+    evaluating: false,
+    aiRunning: false,
+    // 분류 방식·모델 (현재 브라우저 세션에서 유지)
+    method: 'gemini',          // 'gemini' | 'rule'
+    models: { status: 'loading', items: [], def: null, note: '' },
+    selectedModel: null,       // 업무 분류에 쓸 모델
+    evalModel: null,           // 성능 평가에 쓸 모델
+    // 모델별 AI 채점 이력: { 모델ID: { runs: [1차, 2차] } } — 모델끼리 덮어쓰지 않는다
+    aiHistory: {},
+    // 현재 평가 모델의 1차·2차 결과 (서로 독립, 1차 결과를 2차에 전달하지 않음)
+    get aiRuns() {
+      const k = this.evalModel || '';
+      if (!this.aiHistory[k]) this.aiHistory[k] = { runs: [] };
+      return this.aiHistory[k].runs;
+    }
   };
+
+  // 세션 저장: 분류 방식·모델 ID만 (문장·결과는 저장하지 않음). 저장소를 못 쓰면 무시한다.
+  const SESSION_KEYS = { method: 'meditask.method', model: 'meditask.model', evalModel: 'meditask.evalModel' };
+  function sessionGet(k) { try { return sessionStorage.getItem(SESSION_KEYS[k]); } catch (e) { return null; } }
+  function sessionSet(k, v) { try { if (v) sessionStorage.setItem(SESSION_KEYS[k], v); } catch (e) { /* 무시 */ } }
 
   // ======================= 공통: 데이터 로드 =======================
   async function fetchJson(path) {
@@ -160,15 +179,36 @@
       const masked = window.MediMask.maskText(raw);
       setStep('mask', 'done', '완료 · 가림 ' + masked.total + '건');
 
-      setStep('category', 'active', '판단 중...');
-      await nextFrame();
-      // 분류기에는 가림 처리된 문장만 전달한다.
-      const result = window.MediRules.classify(masked.masked, state.criteria, state.keywords);
-      setStep('category', 'done', '완료 · ' + result.category);
+      // 서버(Gemini)와 규칙 분류기에는 가림 처리된 문장만 전달한다.
+      const useAI = state.method === 'gemini';
+      const modelId = state.selectedModel;
+      let ai = { ok: false, code: 'rule_selected' };
+      if (useAI) {
+        setStep('category', 'active', 'Gemini AI 분류 중...');
+        // 모델 목록이 확인되지 않았으면 검증되지 않은 모델로 호출하지 않고 바로 규칙으로 대체
+        ai = state.models.status === 'ready' && modelId ? await callAI([masked.masked], modelId) : { ok: false, code: 'models_unavailable' };
+      } else {
+        setStep('category', 'active', '규칙 기반 판단 중...');
+        await nextFrame();
+      }
+      let result;
+      if (ai.ok) {
+        const r = ai.results[0];
+        result = { category: r.category, urgency: r.urgency, reason: r.reason, method: 'gemini', model: ai.model, fallback: false, detail: { urgencyStep: null } };
+      } else if (!useAI) {
+        result = window.MediRules.classify(masked.masked, state.criteria, state.keywords);
+        result.fallback = false;
+      } else {
+        // AI 실패: 규칙 기반으로 자동 대체 (내부 오류 내용은 화면에 보여주지 않는다)
+        result = window.MediRules.classify(masked.masked, state.criteria, state.keywords);
+        result.fallback = true;
+        result.fallbackCode = ai.code;
+      }
+      setStep('category', 'done', '완료 · ' + result.category + (result.method === 'gemini' ? ' (AI)' : result.fallback ? ' (규칙 대체)' : ' (규칙)'));
 
       setStep('urgency', 'active', '판단 중...');
       await nextFrame();
-      setStep('urgency', 'done', '완료 · ' + result.urgency + ' (' + result.detail.urgencyStep + '단계)');
+      setStep('urgency', 'done', '완료 · ' + result.urgency + (result.detail.urgencyStep ? ' (' + result.detail.urgencyStep + '단계)' : ''));
 
       if (currentText() !== raw) { setClassifyState(currentText().trim() ? 'typing' : 'idle'); return; }
       state.lastResult = { masked: masked, result: result };
@@ -189,7 +229,12 @@
     const catIdx = state.criteria.categories.findIndex((c) => c.name === res.category);
     $('result-category-icon').textContent = ICON_BY_INDEX[catIdx] || 'category';
     $('result-urgency').textContent = res.urgency;
-    $('result-urgency-step').textContent = '긴급도 판단 ' + res.detail.urgencyStep + '단계';
+    $('result-urgency-step').textContent = res.method === 'gemini' ? 'Gemini AI 판단' : '긴급도 판단 ' + res.detail.urgencyStep + '단계';
+    const isAI = res.method === 'gemini';
+    $('result-source').textContent = isAI ? 'AI 분류' : (res.fallback ? '규칙 대체' : '규칙 분류');
+    $('result-source-pill').className = 'pill ' + (isAI ? 'pill-ok' : 'pill-warn');
+    $('result-fallback').hidden = !res.fallback;
+    $('engine-label').textContent = isAI ? 'Gemini AI' : '규칙 기반';
     const tile = $('urgency-tile');
     tile.classList.remove(...URGENCY_CLASS_BY_INDEX);
     const urgIdx = state.criteria.urgency.levels.findIndex((l) => l.name === res.urgency);
@@ -200,12 +245,161 @@
     const parts = Object.keys(c).filter((k) => c[k] > 0).map((k) => k + ' ' + c[k]);
     $('result-mask-badge').textContent = r.masked.total ? '가림 ' + r.masked.total + '건' : '가릴 정보 없음';
     $('result-mask-badge').title = parts.join(', ');
-    $('result-method').textContent = methodText(res.method);
+    $('result-method').textContent = methodText(res);
     resetCopyButton();
   }
 
-  function methodText(method) {
-    return (METHOD_LABEL[method] || method) + ' (method: ' + method + ', criteria v' + state.criteria.version + ')';
+  function methodText(res) {
+    const m = res.method;
+    let extra = 'criteria v' + state.criteria.version;
+    if (m === 'gemini') {
+      const info = modelInfo(res.model);
+      extra = '모델 ' + (info && info.displayName !== res.model ? info.displayName + ' · ' : '') + res.model;
+    }
+    return (METHOD_LABEL[m] || m) + ' (method: ' + m + ', ' + extra + ')';
+  }
+
+  // ======================= 모델 목록 (/api/models) =======================
+  const MODEL_ID_RE = /^[a-z0-9][a-z0-9.\-]{1,63}$/;
+  function modelInfo(id) { return state.models.items.find((m) => m.id === id) || null; }
+  function modelLabel(m) { return m.displayName + ' · ' + m.id + (m.stage === 'preview' ? ' · Preview' : ''); }
+
+  async function loadModels() {
+    state.models = { status: 'loading', items: [], def: null, note: '' };
+    renderModelSelects();
+    try {
+      const res = await fetch('api/models', { cache: 'no-store' });
+      let data = null;
+      try { data = await res.json(); } catch (e) { data = null; }
+      if (!res.ok || !data || !Array.isArray(data.models)) throw new Error((data && data.error && data.error.code) || ('http_' + res.status));
+      // 서버가 걸러준 목록도 형식을 한 번 더 확인한다 (검증되지 않은 값은 표시하지 않음)
+      const items = data.models.filter((m) => m && typeof m.id === 'string' && MODEL_ID_RE.test(m.id)).map((m) => ({
+        id: m.id, displayName: typeof m.displayName === 'string' && m.displayName ? m.displayName.slice(0, 80) : m.id,
+        stage: m.stage === 'preview' ? 'preview' : null
+      }));
+      if (!items.length) throw new Error('no_models');
+      const ids = items.map((m) => m.id);
+      const def = ids.includes(data.default) ? data.default : ids[0];
+      state.models = { status: 'ready', items: items, def: def, note: typeof data.stage_note === 'string' ? data.stage_note : '' };
+      const savedModel = sessionGet('model'), savedEval = sessionGet('evalModel');
+      state.selectedModel = ids.includes(savedModel) ? savedModel : def;
+      state.evalModel = ids.includes(savedEval) ? savedEval : def;
+    } catch (e) {
+      state.models = { status: 'error', items: [], def: null, note: '' };
+      state.selectedModel = null;
+      state.evalModel = null;
+    }
+    renderModelSelects();
+    updateAIButton();
+    renderAIColumns();
+  }
+
+  function fillSelect(sel, current) {
+    sel.textContent = '';
+    const m = state.models;
+    if (m.status !== 'ready') {
+      const o = document.createElement('option');
+      o.textContent = m.status === 'loading' ? '모델 목록 불러오는 중…' : '모델 목록을 불러오지 못했습니다';
+      sel.appendChild(o);
+      sel.disabled = true;
+      return;
+    }
+    m.items.forEach((it) => {
+      const o = document.createElement('option');
+      o.value = it.id;
+      o.textContent = modelLabel(it);
+      if (it.id === current) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.disabled = false;
+  }
+
+  function renderModelSelects() {
+    fillSelect($('model-select'), state.selectedModel);
+    fillSelect($('eval-model-select'), state.evalModel);
+    if (state.aiRunning) $('eval-model-select').disabled = true;
+    const st = $('model-status');
+    st.classList.toggle('model-status-error', state.models.status === 'error');
+    if (state.models.status === 'error') st.textContent = '모델 목록을 확인하지 못해 지금은 규칙 기반으로 분류됩니다 (AI 없이 규칙으로 갈랐습니다).';
+    else if (state.models.status === 'ready') {
+      const info = modelInfo(state.selectedModel);
+      st.textContent = (info && info.stage === 'preview' ? 'Preview 모델은 사용 제한·변경이 있을 수 있습니다. ' : '') + (/-pro/.test(state.selectedModel || '') ? 'Pro 계열은 호출 비용이 높습니다.' : '');
+    } else st.textContent = '';
+    updateEvalCostNote();
+  }
+
+  function updateEvalCostNote() {
+    if (state.aiRunning) return;
+    const id = state.evalModel;
+    const pro = /-pro/.test(id || '');
+    const info = modelInfo(id);
+    $('ai-eval-note').textContent = state.models.status === 'error'
+      ? 'Gemini 모델 목록을 확인하지 못해 AI 채점을 할 수 없습니다. (API 키가 설정된 배포·로컬 테스트 서버에서 사용)'
+      : 'AI 채점 1회 = 30문장을 10개씩 3번 요청합니다 (1차·2차 모두 하면 6번). 사람 정답은 AI에 보내지 않습니다.'
+        + (pro ? ' Pro 계열은 호출 비용이 높습니다.' : '') + (info && info.stage === 'preview' ? ' Preview 모델은 제한·변경이 있을 수 있습니다.' : '');
+  }
+
+  function setMethod(m) {
+    state.method = m === 'rule' ? 'rule' : 'gemini';
+    sessionSet('method', state.method);
+    document.querySelectorAll('.seg-btn').forEach((b) => {
+      const on = b.dataset.method === state.method;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-checked', on ? 'true' : 'false');
+      b.tabIndex = on ? 0 : -1;
+    });
+    $('model-row').hidden = state.method !== 'gemini';
+    // 방식이 바뀌면 이전 결과는 새 방식의 결과로 오해하지 않도록 숨긴다
+    if ($('view-classify').dataset.state === 'done') onInputChanged();
+  }
+
+  // ======================= Gemini API 호출 (/api/classify) =======================
+  // 마스킹된 문장만 보낸다. API 키는 서버 환경 변수에만 있고 브라우저 코드에는 없다.
+  const AI_ENDPOINT = 'api/classify';
+  const AI_TIMEOUT_MS = 70000; // 서버의 Gemini 대기 시간(60초)보다 길게
+  const AI_BATCH = 10;
+
+  /** @returns {Promise<{ok:true, model:string, results:Array, ms:number}|{ok:false, code:string, ms:number}>} */
+  async function callAI(maskedTexts, modelId) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), AI_TIMEOUT_MS);
+    const t0 = performance.now();
+    const body = { texts: maskedTexts };
+    if (modelId) body.model = modelId; // 서버가 허용·지원 여부를 다시 검증한다
+    let out;
+    try {
+      const res = await fetch(AI_ENDPOINT, {
+        method: 'POST', cache: 'no-store', signal: ctrl.signal,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      let data = null;
+      try { data = await res.json(); } catch (e) { data = null; }
+      out = !res.ok ? { ok: false, code: (data && data.error && data.error.code) || ('http_' + res.status) } : validateAI(data, maskedTexts.length);
+      if (out.ok && modelId && out.model !== modelId) out = { ok: false, code: 'model_mismatch' };
+    } catch (e) {
+      out = { ok: false, code: e && e.name === 'AbortError' ? 'timeout' : 'network' };
+    } finally {
+      clearTimeout(timer);
+    }
+    out.ms = Math.round(performance.now() - t0);
+    return out;
+  }
+
+  /** 서버 응답도 브라우저에서 한 번 더 검사: 개수·허용값·이유가 맞지 않으면 실패 */
+  function validateAI(data, n) {
+    const cats = state.criteria.categories.map((c) => c.name);
+    const levels = state.criteria.urgency.levels.map((l) => l.name);
+    const list = data && Array.isArray(data.results) ? data.results : null;
+    if (!list || list.length !== n) return { ok: false, code: 'invalid_response' };
+    const results = [];
+    for (const r of list) {
+      if (!r || !cats.includes(r.category) || !levels.includes(r.urgency) || typeof r.reason !== 'string' || !r.reason.trim()) {
+        return { ok: false, code: 'invalid_response' };
+      }
+      results.push({ category: r.category, urgency: r.urgency, reason: r.reason.replace(/\s+/g, ' ').trim() });
+    }
+    return { ok: true, model: typeof data.model === 'string' ? data.model : 'unknown', results: results };
   }
 
   function resetAll() {
@@ -251,8 +445,8 @@
       '- 긴급도: ' + r.result.urgency,
       '- 분류 이유: ' + r.result.reason,
       '- 요청(개인정보 가림): ' + r.masked.masked,
-      '- 분류 방식: ' + methodText(r.result.method)
-    ].join('\n');
+      '- 분류 방식: ' + methodText(r.result)
+    ].concat(r.result.fallback ? ['- 안내: AI 없이 규칙으로 갈랐습니다'] : []).join('\n');
     let ok = false;
     try {
       if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); ok = true; }
@@ -286,10 +480,11 @@
   }
 
   function refreshEvalAvailability() {
-    if (state.evaluating) return;
+    if (state.evaluating || state.aiRunning) return;
     const btn = $('rule-eval-btn');
     const ready = !!(state.answers && state.criteria && state.keywords);
     btn.disabled = !ready;
+    $('ai-eval-btn').disabled = true;
     if (!state.answers) { setEvalStatus($('eval-error').hidden ? 'loading' : 'error'); return; }
     if (!state.criteria || !state.keywords) {
       setEvalStatus('error');
@@ -310,7 +505,9 @@
       return;
     }
     $('eval-error').hidden = true;
-    setEvalStatus(state.evalRows ? 'done' : 'ready');
+    setEvalStatus(state.evalRows || state.aiRuns.length ? 'done' : 'ready');
+    updateAIButton();
+    renderModelTable();
   }
 
   function evalFields() {
@@ -327,13 +524,15 @@
   }
 
   async function runEvaluation() {
-    if (state.evaluating || !state.answers || !state.criteria || !evalFields()) return;
+    if (state.evaluating || state.aiRunning || !state.answers || !state.criteria || !evalFields()) return;
     state.evaluating = true;
     const answers = state.answers;
     const F = evalFields();
     const total = answers.length;
     const btn = $('rule-eval-btn');
     btn.disabled = true; btn.classList.add('is-busy');
+    $('ai-eval-btn').disabled = true;
+    $('eval-progress-title').textContent = '규칙 기반 채점 진행 중';
     $('rule-eval-icon').textContent = 'progress_activity'; $('rule-eval-icon').classList.add('spin');
     $('rule-eval-label').textContent = '규칙 검증 채점 중...';
     setEvalStatus('running');
@@ -381,7 +580,258 @@
       $('rule-eval-icon').classList.remove('spin');
       $('rule-eval-label').textContent = state.evalRows ? '규칙으로 다시 채점' : '규칙으로 채점';
       btn.disabled = !(state.answers && state.criteria);
+      updateAIButton();
     }
+  }
+
+  // ======================= Gemini AI 채점 (1차·2차 독립 실행) =======================
+  function aiReady() { return !!(state.answers && state.criteria && state.keywords && evalFields() && state.models.status === 'ready' && state.evalModel); }
+
+  function updateAIButton() {
+    const btn = $('ai-eval-btn');
+    const n = state.aiRuns.length;
+    btn.disabled = !aiReady() || state.evaluating || state.aiRunning;
+    $('eval-model-select').disabled = state.models.status !== 'ready' || state.aiRunning;
+    $('ai-eval-label').textContent = n >= 2 ? 'AI 다시 채점' : 'AI로 채점';
+    $('ai-eval-tag').textContent = (n >= 2 ? 1 : n + 1) + '차';
+    $('ai-download-btn').disabled = !historyEntries().length || state.aiRunning;
+  }
+
+  /** 실행된 모델별 이력 (평가 모델 순서대로) */
+  function historyEntries() {
+    return Object.keys(state.aiHistory).filter((k) => k && state.aiHistory[k].runs.length).map((k) => ({ model: k, runs: state.aiHistory[k].runs }));
+  }
+
+  function avgMs(run) {
+    const ok = run.requests.filter((q) => q.ok && typeof q.ms === 'number');
+    return ok.length ? Math.round(ok.reduce((a, q) => a + q.ms, 0) / ok.length) : null;
+  }
+
+  function scoreRows(rows) {
+    const total = rows.length;
+    const cat = rows.filter((r) => r.catOk).length;
+    const urg = rows.filter((r) => r.urgOk).length;
+    const both = rows.filter((r) => r.catOk && r.urgOk).length;
+    return { total: total, category_correct: cat, urgency_correct: urg, exact_match: both, misclassified: total - both, failed: rows.filter((r) => r.failed).length };
+  }
+
+  async function runAIEvaluation() {
+    if (state.evaluating || state.aiRunning || !aiReady()) return;
+    // 평가 시작 시 모델을 고정한다 (진행 중에는 선택 변경 불가)
+    const modelId = state.evalModel;
+    const runs = state.aiRuns; // 이 모델의 1차·2차 보관함
+    if (runs.length >= 2) { runs.length = 0; renderAIColumns(); }
+    state.aiRunning = true;
+    $('eval-model-select').disabled = true;
+    const runNo = runs.length + 1;
+    const F = evalFields();
+    const answers = state.answers;
+    const total = answers.length;
+    const btn = $('ai-eval-btn');
+    btn.disabled = true; btn.classList.add('is-busy');
+    $('rule-eval-btn').disabled = true;
+    $('ai-eval-icon').textContent = 'progress_activity'; $('ai-eval-icon').classList.add('spin');
+    $('ai-download-btn').disabled = true;
+    $('eval-error').hidden = true;
+    $('eval-progress-title').textContent = (modelInfo(modelId) ? modelInfo(modelId).displayName : modelId) + ' ' + runNo + '차 채점 진행 중';
+    $('eval-progress').hidden = false;
+    setEvalStatus('running');
+    const started = new Date().toISOString();
+    // 평가 문장도 같은 마스킹을 거친 뒤 문장만 보낸다 (사람 정답은 보내지 않음)
+    const items = answers.map((a, i) => ({ id: (F.id && a[F.id]) || ('#' + (i + 1)), masked: window.MediMask.maskText(a[F.text]).masked, goldCat: a[F.category], goldUrg: a[F.urgency], raw: a }));
+    const rows = [];
+    let model = null;
+    const requests = [];
+    updateAIProgress(0, total);
+    try {
+      for (let s = 0; s < total; s += AI_BATCH) {
+        const batch = items.slice(s, s + AI_BATCH);
+        const r = await callAI(batch.map((b) => b.masked), modelId);
+        requests.push({ batch: requests.length + 1, size: batch.length, ok: r.ok, error: r.ok ? null : r.code, ms: r.ms });
+        if (r.ok && !model) model = r.model;
+        batch.forEach((b, j) => {
+          const p = r.ok ? r.results[j] : null;
+          rows.push({
+            id: b.id, text: b.masked, goldCat: b.goldCat, goldUrg: b.goldUrg,
+            predCat: p ? p.category : null, predUrg: p ? p.urgency : null, reason: p ? p.reason : null,
+            catOk: !!p && p.category === b.goldCat, urgOk: !!p && p.urgency === b.goldUrg, failed: !p, raw: b.raw
+          });
+        });
+        updateAIProgress(Math.min(s + AI_BATCH, total), total);
+        await nextFrame();
+      }
+      runs.push({ run: runNo, model_requested: modelId, model: model, started_at: started, finished_at: new Date().toISOString(), requests: requests, rows: rows });
+      renderAIColumns();
+      renderModelTable();
+      const failed = rows.filter((r) => r.failed).length;
+      $('ai-eval-note').textContent = failed === total
+        ? 'AI ' + runNo + '차: 응답을 받지 못했습니다 (' + failed + '/' + total + ' 실패, 모두 오답 처리). Gemini API가 연결된 배포 환경에서 다시 실행하세요.'
+        : 'AI ' + runNo + '차 채점 완료' + (failed ? ' · 응답 실패 ' + failed + '건(오답 처리)' : '') + '. ' + (runNo < 2 ? '2차를 실행하면 두 결과를 비교합니다.' : '1차·2차 비교 결과를 확인하세요.');
+      setEvalStatus('done');
+    } catch (err) {
+      $('eval-error-msg').textContent = 'AI 채점 중 오류가 발생했습니다.';
+      $('eval-error').hidden = false;
+      setEvalStatus('error');
+      console.error('[MEDI TASK] AI 채점 오류:', err && err.message);
+    } finally {
+      state.aiRunning = false;
+      $('eval-progress').hidden = true;
+      btn.classList.remove('is-busy');
+      $('ai-eval-icon').textContent = 'auto_awesome'; $('ai-eval-icon').classList.remove('spin');
+      $('rule-eval-btn').disabled = !(state.answers && state.criteria);
+      updateAIButton();
+    }
+  }
+
+  function updateAIProgress(done, total) {
+    const pct = Math.round((done / total) * 1000) / 10;
+    $('eval-progress-pct').textContent = pct.toFixed(1) + '%';
+    $('eval-progress-text').textContent = 'AI 채점 중… ' + done + '/' + total;
+    $('eval-progress-current').textContent = '요청 ' + Math.ceil(done / AI_BATCH) + '/' + Math.ceil(total / AI_BATCH) + '회';
+    $('eval-progress-bar').style.width = pct + '%';
+  }
+
+  function renderAIColumns() {
+    [1, 2].forEach((n) => {
+      const run = state.aiRuns[n - 1];
+      const set = (key, txt) => { const el = $('a' + n + '-' + key); el.textContent = txt; el.className = run ? 'ai-has-value' : 'ai-cell'; };
+      if (!run) { ['cat', 'urg', 'both', 'wrong', 'crit', 'fail'].forEach((k) => set(k, '—')); return; }
+      const s = scoreRows(run.rows);
+      set('cat', pctText(s.category_correct, s.total));
+      set('urg', pctText(s.urgency_correct, s.total));
+      set('both', pctText(s.exact_match, s.total));
+      set('wrong', s.misclassified + '건');
+      const field = incidentFieldOf(run.rows.map((r) => r.raw));
+      if (field) {
+        const top = state.criteria.urgency.levels[0].name;
+        set('crit', run.rows.filter((r) => r.raw[field] === true && r.predUrg !== top).length + '건');
+      } else { set('crit', '기준 확인 필요'); $('a' + n + '-crit').className = 'is-note'; }
+      set('fail', s.failed + '건');
+    });
+    const cmp = runComparison();
+    $('ai-run-compare').hidden = !cmp;
+    if (cmp) {
+      $('ai-agree').textContent = cmp.agree_both + '/' + cmp.total + ' (' + pctText(cmp.agree_both, cmp.total) + ')';
+      $('ai-agree-parts').textContent = cmp.agree_category + ' / ' + cmp.agree_urgency;
+      $('ai-diff').textContent = cmp.diff_pp.category.toFixed(1) + ' / ' + cmp.diff_pp.urgency.toFixed(1) + ' / ' + cmp.diff_pp.exact.toFixed(1) + '%p';
+    }
+    $('compare-state').textContent = state.aiRuns.length ? 'AI ' + state.aiRuns.length + '회 완료' : (state.evalRows ? '규칙 채점 완료' : '미채점');
+  }
+
+  /** 1차·2차 비교: 두 실행 모두 응답을 받은 문장만 '같다'로 센다 */
+  function runComparison(runs) {
+    runs = runs || state.aiRuns;
+    if (runs.length < 2) return null;
+    const [a, b] = runs;
+    const total = a.rows.length;
+    let both = 0, cat = 0, urg = 0;
+    const items = a.rows.map((r, i) => {
+      const q = b.rows[i];
+      const sc = !r.failed && !q.failed && r.predCat === q.predCat;
+      const su = !r.failed && !q.failed && r.predUrg === q.predUrg;
+      if (sc) cat++; if (su) urg++; if (sc && su) both++;
+      return { id: r.id, same_category: sc, same_urgency: su, same_both: sc && su };
+    });
+    const s1 = scoreRows(a.rows), s2 = scoreRows(b.rows);
+    const pp = (x, y) => Math.abs(x - y) / total * 100;
+    return { total: total, agree_both: both, agree_category: cat, agree_urgency: urg, items: items,
+      diff_pp: { category: pp(s1.category_correct, s2.category_correct), urgency: pp(s1.urgency_correct, s2.urgency_correct), exact: pp(s1.exact_match, s2.exact_match) } };
+  }
+
+  /** 규칙 기반 결과: 화면에서 채점한 값이 없으면 같은 경로로 바로 계산 (마스킹 → 규칙) */
+  function ruleRowsForReport() {
+    if (state.evalRows) return state.evalRows;
+    const F = evalFields();
+    return state.answers.map((a, i) => {
+      const m = window.MediMask.maskText(a[F.text]).masked;
+      let p = null;
+      try { p = window.MediRules.classify(m, state.criteria, state.keywords); } catch (e) { p = null; }
+      return { id: (F.id && a[F.id]) || ('#' + (i + 1)), text: m, goldCat: a[F.category], goldUrg: a[F.urgency],
+        predCat: p ? p.category : null, predUrg: p ? p.urgency : null, catOk: !!p && p.category === a[F.category], urgOk: !!p && p.urgency === a[F.urgency], failed: !p };
+    });
+  }
+
+  /** 모델별 비교표: 규칙 기반(실제 계산값) + 모델별 1차·2차 (이력이 있는 모델만, 서로 덮어쓰지 않음) */
+  function renderModelTable() {
+    const body = $('model-compare-body');
+    if (!body || !state.answers || !state.criteria || !evalFields()) return;
+    body.textContent = '';
+    const row = (cells, cls) => {
+      const tr = document.createElement('tr');
+      if (cls) tr.className = cls;
+      cells.forEach((c, i) => {
+        const el = document.createElement(i === 0 ? 'th' : 'td');
+        if (i === 0) el.scope = 'row';
+        if (c && typeof c === 'object') { el.textContent = c.text; if (c.tag) { const t = document.createElement('span'); t.className = 'stage-tag'; t.textContent = c.tag; el.appendChild(t); } }
+        else el.textContent = c;
+        if (i >= 2) el.className = 'has-value';
+        tr.appendChild(el);
+      });
+      body.appendChild(tr);
+    };
+    const rs = scoreRows(ruleRowsForReport());
+    row(['규칙 기반', '기준선', pctText(rs.category_correct, rs.total), pctText(rs.urgency_correct, rs.total), pctText(rs.exact_match, rs.total), rs.failed + '건', '—'], 'is-baseline');
+    const hist = historyEntries();
+    hist.forEach((h) => {
+      const info = modelInfo(h.model);
+      h.runs.forEach((run) => {
+        const s = scoreRows(run.rows);
+        const ms = avgMs(run);
+        row([{ text: (info ? info.displayName + ' · ' : '') + h.model, tag: info && info.stage === 'preview' ? 'Preview' : '' }, run.run + '차',
+          pctText(s.category_correct, s.total), pctText(s.urgency_correct, s.total), pctText(s.exact_match, s.total), s.failed + '건',
+          ms == null ? '측정값 없음' : (ms / 1000).toFixed(2) + '초']);
+      });
+    });
+    $('model-compare-count').textContent = hist.length + '개 모델';
+  }
+
+  function downloadAIReport() {
+    const hist = historyEntries();
+    if (!hist.length) return;
+    const itemOut = (r) => ({
+      id: r.id, text_masked: r.text, gold_category: r.goldCat, gold_urgency: r.goldUrg,
+      pred_category: r.predCat, pred_urgency: r.predUrg,
+      category_correct: !!r.catOk, urgency_correct: !!r.urgOk, exact_match: !!(r.catOk && r.urgOk), failed: !!r.failed
+    });
+    const rule = ruleRowsForReport();
+    const cmp = runComparison();
+    const report = {
+      generated_at: new Date().toISOString(),
+      model: (state.aiRuns.find((r) => r.model) || {}).model || null,
+      criteria_version: state.criteria.version,
+      dataset: { file: 'data/answer.json', count: state.answers.length },
+      settings: { masking: 'mask.js (브라우저) + 서버 2차 마스킹', batch_size: AI_BATCH, requests_per_run: Math.ceil(state.answers.length / AI_BATCH), gold_labels_sent_to_ai: false, failed_counts_as_wrong: true },
+      rule_based: { method: 'rule', summary: scoreRows(rule), items: rule.map(itemOut) },
+      gemini_runs: state.aiRuns.map((run) => ({
+        run: run.run, model: run.model, started_at: run.started_at, finished_at: run.finished_at,
+        avg_response_ms: avgMs(run), requests: run.requests, summary: scoreRows(run.rows), items: run.rows.map(itemOut)
+      })),
+      run_comparison: cmp ? { agreement_both: cmp.agree_both, agreement_category: cmp.agree_category, agreement_urgency: cmp.agree_urgency, total: cmp.total, accuracy_diff_pp: cmp.diff_pp, items: cmp.items } : null,
+      // 모델별 결과 (위 model·gemini_runs·run_comparison은 현재 선택한 평가 모델 기준, 이전 형식 호환)
+      evaluated_model: state.evalModel,
+      models: hist.map((h) => {
+        const info = modelInfo(h.model);
+        const c = runComparison(h.runs);
+        return {
+          model_id: h.model, display_name: info ? info.displayName : null, stage: info ? info.stage : null,
+          runs: h.runs.map((run) => ({
+            run: run.run, model: run.model, started_at: run.started_at, finished_at: run.finished_at,
+            avg_response_ms: avgMs(run), requests: run.requests, summary: scoreRows(run.rows), items: run.rows.map(itemOut)
+          })),
+          run_comparison: c ? { agreement_both: c.agree_both, agreement_category: c.agree_category, agreement_urgency: c.agree_urgency, total: c.total, accuracy_diff_pp: c.diff_pp } : null
+        };
+      }),
+      model_comparison: [{ model_id: 'rule', run: 'baseline', summary: scoreRows(rule), avg_response_ms: null }].concat(
+        hist.flatMap((h) => h.runs.map((run) => ({ model_id: h.model, run: run.run, summary: scoreRows(run.rows), avg_response_ms: avgMs(run) })))),
+      notes: { avg_response_ms: '브라우저에서 /api/classify 요청 1회(10문장)를 잰 왕복 시간의 평균 (성공 요청만)', history: '평가 이력은 브라우저 메모리에만 있으며 새로고침하면 사라짐' }
+    };
+    const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ai_채점결과.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
   }
 
   function updateProgress(done, total, id) {
@@ -442,7 +892,9 @@
     setCell('c-both', pctText(both, total));
     setCell('c-crit', field ? critText : '기준 확인 필요', field ? 'has-value' : 'is-note');
     setCell('c-fail', failures + '건');
-    $('compare-state').textContent = '규칙 채점 완료';
+    setCell('c-wrong', wrong + '건');
+    renderModelTable();
+    $('compare-state').textContent = state.aiRuns.length ? 'AI ' + state.aiRuns.length + '회 완료' : '규칙 채점 완료';
 
     // 필터 수
     const counts = {
@@ -817,6 +1269,29 @@
     $('eval-retry').addEventListener('click', () => { loadAnswers(); if (!state.criteria) loadClassifierData(); });
     document.querySelectorAll('.fchip').forEach((b) => b.addEventListener('click', () => setFilter(b.dataset.filter)));
     $('csv-btn').addEventListener('click', downloadCsv);
+    $('ai-eval-btn').addEventListener('click', runAIEvaluation);
+    $('ai-download-btn').addEventListener('click', downloadAIReport);
+    const segs = Array.from(document.querySelectorAll('.seg-btn'));
+    segs.forEach((b, i) => {
+      b.addEventListener('click', () => setMethod(b.dataset.method));
+      b.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        const n = segs[(i + (e.key === 'ArrowRight' ? 1 : segs.length - 1)) % segs.length];
+        setMethod(n.dataset.method); n.focus();
+      });
+    });
+    $('model-select').addEventListener('change', (e) => {
+      if (!modelInfo(e.target.value)) return;
+      state.selectedModel = e.target.value; sessionSet('model', state.selectedModel);
+      renderModelSelects();
+      if ($('view-classify').dataset.state === 'done') onInputChanged(); // 다른 모델 결과로 오해하지 않게
+    });
+    $('eval-model-select').addEventListener('change', (e) => {
+      if (state.aiRunning || !modelInfo(e.target.value)) { renderModelSelects(); return; }
+      state.evalModel = e.target.value; sessionSet('evalModel', state.evalModel);
+      renderAIColumns(); updateAIButton(); updateEvalCostNote();
+    });
     $('criteria-retry').addEventListener('click', loadClassifierData);
   }
 
@@ -830,6 +1305,8 @@
     onInputChanged();
     loadClassifierData();
     loadAnswers();
+    setMethod(sessionGet('method') === 'rule' ? 'rule' : 'gemini');
+    loadModels();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

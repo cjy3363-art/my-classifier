@@ -27,8 +27,8 @@
             <span class="brand-sub">Task Classification</span>
           </div>
         </div>
-        <div class="engine-pill" title="현재 분류 방식">
-          <span class="dot dot-pulse"></span><span>규칙 기반</span>
+        <div class="engine-pill" title="분류 방식: Gemini AI 우선, 실패 시 규칙 기반">
+          <span class="dot dot-pulse"></span><span id="engine-label">AI + 규칙</span>
         </div>
       </div>
       <nav class="tabs" role="tablist" aria-label="메뉴">
@@ -87,6 +87,20 @@
           <div class="chips" id="example-chips" role="group" aria-labelledby="examples-label"></div>
         </div>
 
+        <!-- 분류 방식 · Gemini 모델 선택 -->
+        <div class="engine-box">
+          <span class="label-xs muted" id="method-label">분류 방식</span>
+          <div class="seg" role="radiogroup" aria-labelledby="method-label">
+            <button class="seg-btn is-active" type="button" role="radio" aria-checked="true" data-method="gemini"><span class="icon icon-16">auto_awesome</span>Gemini AI</button>
+            <button class="seg-btn" type="button" role="radio" aria-checked="false" tabindex="-1" data-method="rule"><span class="icon icon-16">rule_settings</span>규칙 기반</button>
+          </div>
+          <div class="model-row" id="model-row">
+            <label class="label-xs muted" for="model-select">Gemini 모델</label>
+            <select class="select" id="model-select" disabled><option>모델 목록 불러오는 중…</option></select>
+            <p class="hint" id="model-status" role="status"></p>
+          </div>
+        </div>
+
         <div class="stack-8">
           <button class="btn btn-primary btn-lg" id="classify-btn" type="button" disabled>
             <span class="icon" id="classify-btn-icon">psychology</span>
@@ -128,7 +142,12 @@
             <span class="ok-badge"><span class="icon icon-16">task_alt</span></span>
             <h2 class="title-sm">분류 결과</h2>
           </div>
-          <span class="pill pill-ok"><span class="dot"></span>분류 완료</span>
+          <span class="pill pill-ok" id="result-source-pill"><span class="dot"></span><span id="result-source">분류 완료</span></span>
+        </div>
+
+        <div class="note-row fallback-note" id="result-fallback" hidden>
+          <span class="icon icon-15">info</span>
+          <span class="label-xs">AI 없이 규칙으로 갈랐습니다</span>
         </div>
 
         <div class="grid-2">
@@ -196,17 +215,21 @@
           </div>
           <span class="pill pill-ok" id="eval-status"><span class="dot"></span><span id="eval-status-text">불러오는 중</span></span>
         </div>
+        <div class="model-row">
+          <label class="label-xs muted" for="eval-model-select">평가할 Gemini 모델</label>
+          <select class="select" id="eval-model-select" disabled><option>모델 목록 불러오는 중…</option></select>
+        </div>
         <div class="stack-10 eval-actions">
           <button class="btn btn-primary btn-lg" id="rule-eval-btn" type="button" disabled>
             <span class="icon" id="rule-eval-icon">rule_settings</span><span id="rule-eval-label">규칙으로 채점</span>
           </button>
-          <button class="btn btn-disabled btn-lg" type="button" disabled aria-disabled="true">
-            <span class="icon icon-18">lock</span><span>AI로 채점</span><span class="tag">Gemini</span>
+          <button class="btn btn-ai btn-lg" id="ai-eval-btn" type="button" disabled>
+            <span class="icon icon-18" id="ai-eval-icon">auto_awesome</span><span id="ai-eval-label">AI로 채점</span><span class="tag" id="ai-eval-tag">1차</span>
           </button>
         </div>
         <div class="note-row">
           <span class="icon icon-15 text-secondary">info</span>
-          <span class="label-xs">AI 채점은 STEP 5에서 Gemini를 연결한 뒤 사용할 수 있습니다. 지금은 규칙 기반 채점만 동작합니다.</span>
+          <span class="label-xs" id="ai-eval-note">AI 채점 1회 = 30문장을 10개씩 3번 요청합니다. 1차·2차를 따로 실행하며, 사람 정답은 AI에 보내지 않습니다.</span>
         </div>
       </div>
 
@@ -222,7 +245,7 @@
         <div class="between">
           <div class="row gap-6">
             <span class="ping-dot"></span>
-            <span class="title-sm text-primary">규칙 기반 채점 진행 중</span>
+            <span class="title-sm text-primary" id="eval-progress-title">규칙 기반 채점 진행 중</span>
           </div>
           <span class="pct-badge code-num" id="eval-progress-pct">0%</span>
         </div>
@@ -277,15 +300,40 @@
           <table class="compare">
             <thead><tr><th scope="col">평가 항목</th><th scope="col">규칙 기반</th><th scope="col">AI 1회</th><th scope="col">AI 2회</th></tr></thead>
             <tbody>
-              <tr><th scope="row">업무 유형 정확도</th><td id="c-cat">—</td><td class="ai-cell">—</td><td class="ai-cell">—</td></tr>
-              <tr><th scope="row">긴급도 정확도</th><td id="c-urg">—</td><td class="ai-cell">—</td><td class="ai-cell">—</td></tr>
-              <tr><th scope="row">완전 일치</th><td id="c-both">—</td><td class="ai-cell">—</td><td class="ai-cell">—</td></tr>
-              <tr><th scope="row" class="text-error">중요 사고 긴급도 누락</th><td id="c-crit">—</td><td class="ai-cell">—</td><td class="ai-cell">—</td></tr>
-              <tr><th scope="row">응답 실패</th><td id="c-fail">—</td><td class="ai-cell">—</td><td class="ai-cell">—</td></tr>
+              <tr><th scope="row">업무 유형 정확도</th><td id="c-cat">—</td><td class="ai-cell" id="a1-cat">—</td><td class="ai-cell" id="a2-cat">—</td></tr>
+              <tr><th scope="row">긴급도 정확도</th><td id="c-urg">—</td><td class="ai-cell" id="a1-urg">—</td><td class="ai-cell" id="a2-urg">—</td></tr>
+              <tr><th scope="row">완전 일치</th><td id="c-both">—</td><td class="ai-cell" id="a1-both">—</td><td class="ai-cell" id="a2-both">—</td></tr>
+              <tr><th scope="row">오분류 건수</th><td id="c-wrong">—</td><td class="ai-cell" id="a1-wrong">—</td><td class="ai-cell" id="a2-wrong">—</td></tr>
+              <tr><th scope="row" class="text-error">중요 사고 긴급도 누락</th><td id="c-crit">—</td><td class="ai-cell" id="a1-crit">—</td><td class="ai-cell" id="a2-crit">—</td></tr>
+              <tr><th scope="row">응답 실패</th><td id="c-fail">—</td><td class="ai-cell" id="a1-fail">—</td><td class="ai-cell" id="a2-fail">—</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="label-xs muted">AI 1회·2회 열은 STEP 5에서 Gemini 연결 후 채워집니다.</p>
+        <p class="label-xs muted" id="compare-note">규칙 기반 열은 화면에서 채점한 값, AI 열은 Gemini 1차·2차 실행 값입니다. 응답 실패 문장은 오답으로 셉니다.</p>
+        <div class="panel" id="ai-run-compare" hidden>
+          <span class="label-md">AI 1차 · 2차 비교</span>
+          <div class="between"><span class="label-xs muted">실행 간 결과 일치율 (유형·긴급도 모두)</span><strong class="code-num" id="ai-agree">—</strong></div>
+          <div class="between"><span class="label-xs muted">유형 일치 / 긴급도 일치</span><strong class="code-num" id="ai-agree-parts">—</strong></div>
+          <div class="between"><span class="label-xs muted">정확도 차이 (유형 / 긴급도 / 완전)</span><strong class="code-num" id="ai-diff">—</strong></div>
+        </div>
+        <button class="btn btn-small btn-tonal ai-download" id="ai-download-btn" type="button" disabled>
+          <span class="icon icon-16">download</span><span>AI 채점 결과 내려받기</span>
+        </button>
+      </div>
+
+      <!-- 모델별 비교표 -->
+      <div class="card" id="model-compare-card">
+        <div class="between">
+          <div class="row gap-6"><span class="icon icon-18 text-primary">leaderboard</span><span class="title-sm">모델별 비교</span></div>
+          <span class="pill pill-soft" id="model-compare-count">0개 모델</span>
+        </div>
+        <div class="table-scroll" tabindex="0" aria-label="모델별 비교표 (가로로 스크롤)">
+          <table class="compare model-table">
+            <thead><tr><th scope="col">모델</th><th scope="col">실행</th><th scope="col">업무 유형</th><th scope="col">긴급도</th><th scope="col">완전 일치</th><th scope="col">실패</th><th scope="col">평균 응답</th></tr></thead>
+            <tbody id="model-compare-body"></tbody>
+          </table>
+        </div>
+        <p class="label-xs muted">평가 이력은 이 브라우저 탭의 메모리에만 있어 새로고침하면 사라집니다. 평균 응답은 이 브라우저에서 /api/classify 요청 1회(10문장)를 실제로 잰 값입니다.</p>
       </div>
 
       <!-- 오분류 상세 분석 -->

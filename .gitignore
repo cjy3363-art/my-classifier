@@ -1,9 +1,10 @@
 # 최초 AI 판단 기록: 실행에 쓰이지 않고 내용 출력 금지 대상 (CLAUDE.md)
 data/_만든의도.json
 
-# 비밀값·배포 설정
+# 비밀값·배포 설정 (.env.example은 변수 이름만 있으므로 추적)
 .env
 .env.*
+!.env.example
 .vercel/
 
 # 실행·편집기 부산물
