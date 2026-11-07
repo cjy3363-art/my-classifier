@@ -366,7 +366,7 @@
   // ======================= Gemini API 호출 (/api/classify) =======================
   // 마스킹된 문장만 보낸다. API 키는 서버 환경 변수에만 있고 브라우저 코드에는 없다.
   const AI_ENDPOINT = 'api/classify';
-  const AI_TIMEOUT_MS = 70000; // 서버의 Gemini 대기 시간(60초)보다 길게
+  const AI_TIMEOUT_MS = 90000; // 서버의 Gemini 대기 시간(80초)보다 길게 (Vercel 함수 한도 90초)
   const AI_BATCH = 10;
 
   /** @returns {Promise<{ok:true, model:string, results:Array, ms:number}|{ok:false, code:string, ms:number}>} */

@@ -103,7 +103,7 @@ class CallTests(unittest.TestCase):
         out = C.classify({"texts": [f"요청 {i}" for i in range(10)]}, env_key=FAKE_KEY, urlopen=fake_urlopen(gemini_payload(ok_results(10)), cap))
         self.assertEqual(len(out["results"]), 10)
         self.assertEqual(out["model"], C.DEFAULT_MODEL)
-        self.assertEqual(cap[0]["timeout"], 60)
+        self.assertEqual(cap[0]["timeout"], 80)
         self.assertEqual(cap[0]["headers"].get("X-goog-api-key"), FAKE_KEY)  # 키는 헤더로만
         self.assertNotIn(FAKE_KEY, cap[0]["url"])
         self.assertEqual(cap[0]["body"]["generationConfig"]["responseMimeType"], "application/json")

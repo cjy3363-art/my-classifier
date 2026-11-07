@@ -34,7 +34,7 @@ DEFAULT_MODEL = gm.DEFAULT_MODEL
 DEFAULT_MAX_OUTPUT_TOKENS = 4096
 CLASSIFY_LIMITER = gm.RateLimiter(limit=20, window_seconds=60)  # IP별, 인스턴스별 (최선의 노력)
 API_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-TIMEOUT_SECONDS = 60
+TIMEOUT_SECONDS = 80
 MAX_TEXTS = 10
 MAX_TEXT_LEN = 500
 MAX_BODY_BYTES = 64 * 1024
