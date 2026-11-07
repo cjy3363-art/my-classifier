@@ -1,0 +1,1238 @@
+<!-- 모바일 업무 분류 (초기 상태) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Task Classification</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a aria-current="page" class="flex items-center justify-center min-h-[44px] transition-colors rounded-t-lg text-primary font-title-sm border-b-2 border-primary bg-primary/5" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-20">
+<section class="py-space-md flex flex-col gap-1"><h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">업무 요청 분류</h2></section>
+
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[20px] text-primary">edit_note</span><h3 class="font-title-sm text-title-sm text-on-surface">업무 내용</h3></div></div>
+
+<div class="relative w-full">
+<textarea class="w-full p-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md resize-none focus:outline-none focus:bg-surface-bright transition-all" id="taskInput" maxlength="500" placeholder="분류할 업무 내용을 입력하세요 (예: 이벤트 배너 가격 수정 요청)" rows="4"></textarea>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[15px] text-secondary">lock</span><span class="font-label-xs text-label-xs text-on-surface-variant font-medium">개인정보·기밀 입력 금지</span></div>
+<span class="font-code-num text-code-num text-on-surface-variant" id="charCount">0 / 500자</span>
+</div>
+<div class="pt-2 flex flex-col gap-2">
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">자주 쓰는 템플릿 예시</span>
+<div class="flex flex-wrap gap-1.5">
+<button class="quick-chip px-2.5 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-label-xs text-label-xs active:scale-95 transition-all flex items-center gap-1" data-text="홈페이지 이벤트 배너에 잘못된 가격이 표시되어 있습니다. 오늘 중으로 긴급 수정 부탁드립니다." type="button">
+<span class="text-[12px]">🏷️</span> 콘텐츠 긴급 수정
+        </button>
+<button class="quick-chip px-2.5 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-label-xs text-label-xs active:scale-95 transition-all flex items-center gap-1" data-text="신규 피부 클리닉 론칭을 위한 공식 블로그 홍보 콘텐츠 기획 및 초안 검토 요청드립니다." type="button">
+<span class="text-[12px]">🏷️</span> 신규 콘텐츠 제작
+        </button>
+<button class="quick-chip px-2.5 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-label-xs text-label-xs active:scale-95 transition-all flex items-center gap-1" data-text="네이버 인플루언서 10인 대상 춘계 프로모션 체험단 일정 조율 및 가이드라인 전달 건입니다." type="button">
+<span class="text-[12px]">🏷️</span> 체험단 캠페인 운영
+        </button>
+</div>
+</div>
+<div class="pt-3 flex flex-col gap-2">
+<button class="w-full h-12 rounded-lg bg-primary/40 text-on-primary font-title-sm text-title-sm flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-not-allowed" disabled="" id="classifyBtn">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+<span class="">업무 분류하기</span>
+</button>
+<button class="w-full h-10 rounded-lg bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1 hover:text-on-surface transition-colors" id="resetBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span class="">초기화</span>
+</button>
+</div>
+</section>
+
+</div>
+<script>
+  (function() {
+    const input = document.getElementById('taskInput');
+    const counter = document.getElementById('charCount');
+    const btn = document.getElementById('classifyBtn');
+    const reset = document.getElementById('resetBtn');
+    const chips = document.querySelectorAll('.quick-chip');
+
+    function updateState() {
+      const len = input.value.length;
+      counter.textContent = `${len} / 500자`;
+      if (len > 0) {
+        btn.removeAttribute('disabled');
+        btn.classList.remove('bg-primary/40', 'cursor-not-allowed');
+        btn.classList.add('bg-primary', 'cursor-pointer', 'active:scale-[0.99]');
+      } else {
+        btn.setAttribute('disabled', 'true');
+        btn.classList.add('bg-primary/40', 'cursor-not-allowed');
+        btn.classList.remove('bg-primary', 'cursor-pointer', 'active:scale-[0.99]');
+      }
+    }
+
+    input.addEventListener('input', updateState);
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        input.value = chip.getAttribute('data-text');
+        updateState();
+        input.focus();
+      });
+    });
+
+    reset.addEventListener('click', () => {
+      input.value = '';
+      updateState();
+    });
+  })();
+</script></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4</span></div></footer>
+
+</body></html>
+
+<!-- 모바일 업무 분류 (분류 완료 결과) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Task Classification</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a aria-current="page" class="flex items-center justify-center min-h-[44px] transition-colors rounded-t-lg text-primary font-title-sm border-b-2 border-primary bg-primary/5" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-20 space-y-4">
+<!-- Top Hero / Status Pulse Notification -->
+
+<!-- Input Card Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-4 space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+<label class="font-title-sm text-title-sm text-on-surface" for="task-input">인바운드 요청 입력</label>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-code-num" id="char-count">49 / 500자</span>
+</div>
+<!-- Active Textarea -->
+<div class="relative rounded-lg bg-surface-container-low p-2.5 transition-all">
+<textarea class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none resize-none placeholder:text-outline" id="task-input" placeholder="병원 인바운드 마케팅 요청 및 변경 사항을 입력하세요..." rows="3">홈페이지 이벤트 배너에 잘못된 가격이 표시되어 있습니다. 오늘 중으로 수정 부탁드립니다.</textarea>
+</div>
+<!-- Quick Example Chips -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant">빠른 예시 템플릿</span>
+
+</div>
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1"><button class="whitespace-nowrap px-3 py-1.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-medium flex items-center gap-1 flex-shrink-0" type="button">가격 오류 긴급</button><button class="whitespace-nowrap px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant font-label-xs text-label-xs transition-colors hover:bg-surface-container flex items-center gap-1 flex-shrink-0" type="button">시술 비용 문의</button><button class="whitespace-nowrap px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant font-label-xs text-label-xs transition-colors hover:bg-surface-container flex items-center gap-1 flex-shrink-0" type="button">진료 예약 취소</button></div>
+</div>
+<!-- Actions Bar -->
+<div class="grid grid-cols-4 gap-2 pt-1">
+<button class="col-span-1 min-h-[44px] flex items-center justify-center gap-1 rounded-lg bg-surface-container text-on-surface-variant font-title-sm text-body-md active:bg-surface-container-high transition-colors" id="reset-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span class="hidden xs:inline">초기화</span>
+</button>
+<button class="col-span-3 min-h-[44px] flex items-center justify-center gap-2 rounded-lg bg-primary-container text-on-primary font-title-sm text-title-sm shadow-sm active:opacity-90 transition-all" id="submit-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="">업무 분류하기</span>
+</button>
+</div>
+</section>
+<!-- Completed Result Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-4 space-y-4">
+<!-- Section Header & Badge -->
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed/60 flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[16px] text-secondary">task_alt</span>
+</div>
+<h2 class="font-title-sm text-title-sm text-on-surface">분류 결과</h2>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-xs text-label-xs font-semibold">분류 완료</span>
+</div>
+</div>
+<!-- Prominent Summary Cards (2-Column Grid on Mobile) -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Card 1: 업무 유형 -->
+<div class="bg-surface-container-low rounded-xl p-3.5 flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">업무 유형</span>
+<div class="w-7 h-7 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">edit_document</span>
+</div>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface tracking-tight">콘텐츠 수정</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[13px] text-secondary">bolt</span>
+<span class="font-label-xs text-label-xs text-secondary font-medium">홈페이지 관리팀 배정</span>
+</div>
+</div>
+</div>
+<!-- Card 2: 긴급도 -->
+<div class="bg-error-container/40 rounded-xl p-3.5 flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">긴급도</span>
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-ping"></span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-headline-md text-error tracking-tight">높음</span>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-xs text-label-xs font-bold">당일 완료</span>
+</div>
+<p class="font-label-xs text-label-xs text-on-error-container mt-0.5 font-medium">SLA: 4시간 이내</p>
+</div>
+</div>
+</div>
+<!-- Reason Panel (분류 이유) -->
+
+<!-- Masked Privacy Panel (개인정보 가림 처리된 요청) -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low text-on-surface-variant"><div class="flex items-center gap-2 min-w-0"><span class="material-symbols-outlined text-[18px] text-primary">confirmation_number</span><span class="font-code-num text-code-num text-on-surface font-medium truncate">#MED-240822-09</span><span class="font-label-xs text-label-xs text-on-surface-variant truncate">• 원내 마케팅실 티켓 발급</span></div><span class="font-label-xs text-label-xs text-secondary font-medium px-2 py-0.5 rounded bg-secondary-fixed/50 flex-shrink-0">마스킹 완료</span></div>
+<!-- Micro Process Flow / Routing preview -->
+
+<!-- Result Footer -->
+
+</section>
+<!-- UI State Showcase banner at bottom (AI Fallback Notice component) -->
+
+</div>
+<script>
+  (function () {
+    const copyBtn = document.getElementById('copy-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const taskInput = document.getElementById('task-input');
+    const charCount = document.getElementById('char-count');
+
+    if (taskInput && charCount) {
+      taskInput.addEventListener('input', (e) => {
+        const len = e.target.value.length;
+        charCount.textContent = `${len} / 500자`;
+      });
+    }
+
+    if (resetBtn && taskInput && charCount) {
+      resetBtn.addEventListener('click', () => {
+        taskInput.value = '';
+        charCount.textContent = '0 / 500자';
+        taskInput.focus();
+      });
+    }
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const textToCopy = `[MEDI TASK 분류 결과]\n- 업무 유형: 콘텐츠 수정\n- 긴급도: 높음 (SLA 4시간)\n- 사유: 이벤트 배너 가격 오류 수정 건으로 즉시 조치 필요`;
+        try {
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(textToCopy);
+          }
+          const originalText = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<span class="material-symbols-outlined text-[18px] text-secondary">check</span><span class="text-secondary font-semibold">복사됨!</span>`;
+          setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+          }, 1800);
+        } catch (err) {
+          console.warn('Copy action handled', err);
+        }
+      });
+    }
+  })();
+</script></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">HIPAA &amp; 의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4.0-med</span></div></footer>
+
+</body></html>
+
+<!-- 모바일 성능 평가 (채점 전) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Performance Evaluation</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a aria-current="page" class="flex items-center justify-center min-h-[44px] transition-colors rounded-t-lg text-primary font-title-sm border-b-2 border-primary bg-primary/5" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-20 space-y-4">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-xs text-label-xs tracking-wider uppercase text-primary">Benchmark Suite</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">분류 성능 평가</h1>
+
+</div>
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-4 shadow-sm">
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-2">
+<div class="flex h-7 w-7 items-center justify-center rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+</div>
+<div>
+<span class="font-title-sm text-title-sm text-on-surface block">평가 실행</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">기준 데이터셋: 골든 샘플 30건</span>
+</div>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+        준비 완료
+      </span>
+</div>
+<div class="flex flex-col gap-2.5 pt-1">
+<button class="w-full min-h-[46px] rounded-lg bg-primary-container text-on-primary font-title-sm text-title-sm shadow-sm active:scale-[0.99] transition-all flex items-center justify-center gap-2" id="rule-eval-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">rule_settings</span>
+<span class="">규칙으로 채점</span>
+</button>
+<button class="w-full min-h-[44px] rounded-lg bg-surface-container-high text-on-surface-variant/60 font-title-sm text-title-sm flex items-center justify-center gap-2 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary">lock</span>
+<span class="">AI로 채점</span>
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-surface-variant text-on-surface-variant ml-1">Gemini Pro</span>
+</button>
+</div>
+<div class="mt-3 flex items-start gap-1.5 px-2 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-secondary mt-0.5 flex-shrink-0">info</span>
+<span class="font-label-xs text-label-xs leading-tight">AI 채점은 Gemini 연결 후 사용할 수 있습니다.</span>
+</div>
+</div>
+<div class="flex flex-col space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-on-surface">핵심 지표 요약</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">채점 전 상태</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<div class="rounded-xl bg-surface-container-lowest p-3.5 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-xs text-label-xs text-on-surface-variant">업무 유형 정확도</span>
+<span class="material-symbols-outlined text-[16px] text-outline">category</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-code-num text-on-surface-variant/40 tracking-tight my-1">—</div>
+
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-3.5 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-xs text-label-xs text-on-surface-variant">긴급도 정확도</span>
+<span class="material-symbols-outlined text-[16px] text-outline">notifications_active</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-code-num text-on-surface-variant/40 tracking-tight my-1">—</div>
+
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-3.5 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-xs text-label-xs text-on-surface-variant">완전 일치</span>
+<span class="material-symbols-outlined text-[16px] text-outline">fact_check</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-code-num text-on-surface-variant/40 tracking-tight my-1">—</div>
+
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-3.5 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-xs text-label-xs text-error">중요 사고 긴급도 누락</span>
+<span class="material-symbols-outlined text-[16px] text-error">report</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-code-num text-on-surface-variant/40 tracking-tight my-1">—</div>
+
+</div>
+</div>
+
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-4 shadow-sm flex flex-col space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">compare_arrows</span>
+<span class="font-title-sm text-title-sm text-on-surface">평가 항목별 비교 (규칙 vs AI)</span>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">미채점</span>
+</div>
+<div class="w-full overflow-x-auto">
+<div class="min-w-[340px] flex flex-col">
+<div class="grid grid-cols-4 bg-surface-container-low rounded-lg py-2 px-3 text-on-surface-variant font-label-xs text-label-xs">
+<span class="col-span-1">평가 항목</span>
+<span class="text-center">규칙 기반</span>
+<span class="text-center">AI 1회</span>
+<span class="text-center">AI 2회</span>
+</div>
+<div class="flex flex-col space-y-1 mt-1 font-body-sm text-body-sm">
+<div class="grid grid-cols-4 items-center px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors">
+<span class="font-label-xs text-label-xs text-on-surface truncate">업무 유형 정확도</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/40">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+</div>
+<div class="grid grid-cols-4 items-center px-3 py-2.5 rounded bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<span class="font-label-xs text-label-xs text-on-surface truncate">긴급도 정확도</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/40">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+</div>
+<div class="grid grid-cols-4 items-center px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors">
+<span class="font-label-xs text-label-xs text-on-surface truncate">완전 일치</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/40">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+</div>
+<div class="grid grid-cols-4 items-center px-3 py-2.5 rounded bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<span class="font-label-xs text-label-xs text-error truncate">중요 사고 긴급도 누락</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/40">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+</div>
+<div class="grid grid-cols-4 items-center px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors">
+<span class="font-label-xs text-label-xs text-on-surface truncate">응답 실패</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/40">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+<span class="text-center font-code-num text-code-num text-on-surface-variant/30">—</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-5 shadow-sm flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-2.5 text-primary">
+<span class="material-symbols-outlined text-[24px]">troubleshoot</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-surface mb-1">오분류 심층 분석 대기</span>
+
+<div class="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low font-label-xs text-label-xs text-tertiary">
+<span class="material-symbols-outlined text-[14px]">dataset</span>
+<span class="">검증셋 30문항 대기 중</span>
+</div>
+</div>
+</div>
+<script>
+  const evalBtn = document.getElementById('rule-eval-btn');
+  if (evalBtn) {
+    evalBtn.addEventListener('click', function() {
+      const originalHTML = evalBtn.innerHTML;
+      evalBtn.disabled = true;
+      evalBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span>
+        <span>규칙 검증 채점 중...</span>
+      `;
+      setTimeout(() => {
+        evalBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[18px]">check_circle</span>
+          <span>채점 완료</span>
+        `;
+        setTimeout(() => {
+          evalBtn.disabled = false;
+          evalBtn.innerHTML = originalHTML;
+        }, 1200);
+      }, 1000);
+    });
+  }
+</script></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">HIPAA &amp; 의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4.0-med</span></div></footer>
+
+</body></html>
+
+<!-- 모바일 성능 평가 (채점 완료 결과) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Performance Evaluation</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a aria-current="page" class="flex items-center justify-center min-h-[44px] transition-colors rounded-t-lg text-primary font-title-sm border-b-2 border-primary bg-primary/5" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-16 space-y-3.5">
+<!-- Title & Context Intro -->
+<section class="flex flex-col space-y-1.5 pt-1">
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[15px]">analytics</span>
+</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">분류 성능 평가</h2>
+</div>
+
+</section>
+<!-- Evaluation Action Card with Live State & Spark -->
+<section class="bg-surface-container-low rounded-xl p-4 shadow-sm flex flex-col space-y-3.5"><div class="flex items-center justify-between text-on-surface-variant font-label-md"><span class="flex items-center gap-1.5 font-medium"><span class="w-2 h-2 rounded-full bg-secondary"></span> 채점 완료 (30개 문장)</span><span class="font-code-num text-label-xs">14:32</span></div><div class="flex items-center gap-2 pt-0.5"><button class="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-lowest text-primary shadow-sm active:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">replay</span><span class="font-title-sm text-title-sm font-semibold">재채점 실행</span></button><button class="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-primary-container text-on-primary shadow-sm active:bg-primary transition-colors" type="button"><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span><span class="font-title-sm text-title-sm font-semibold truncate">AI 채점 (Gemini)</span></button></div></section>
+<!-- 4 Summary Metric Cards (2x2 Grid) -->
+<section class="grid grid-cols-2 gap-2.5"><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between"><span class="font-label-md text-label-md text-on-surface-variant">업무 유형 정확도</span><div class="mt-2 flex flex-col"><span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">83.3%</span><span class="font-label-xs text-label-xs text-on-surface-variant font-code-num mt-0.5">25 / 30 일치</span></div></div><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between"><span class="font-label-md text-label-md text-on-surface-variant">긴급도 정확도</span><div class="mt-2 flex flex-col"><span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">90.0%</span><span class="font-label-xs text-label-xs text-on-surface-variant font-code-num mt-0.5">27 / 30 일치</span></div></div><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between"><span class="font-label-md text-label-md text-on-surface-variant">완전 일치</span><div class="mt-2 flex flex-col"><span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">76.7%</span><span class="font-label-xs text-label-xs text-primary/80 font-code-num mt-0.5">23 / 30 일치</span></div></div><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between"><span class="font-label-md text-label-md text-on-surface-variant">사고 긴급도 누락</span><div class="mt-2 flex flex-col"><span class="font-headline-md text-headline-md text-secondary font-bold tracking-tight">0건</span><span class="font-label-xs text-label-xs text-secondary font-code-num mt-0.5">누락 없음 (안전)</span></div></div></section>
+<!-- Performance Comparison Table Module -->
+<section class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">table_chart</span>
+<h3 class="font-title-sm text-title-sm text-on-surface">분류기 벤치마크 비교</h3>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">swipe_left</span> 가로 스크롤
+      </span>
+</div>
+<!-- Scrollable Comparison Grid -->
+<div class="w-full overflow-x-auto">
+<div class="min-w-[340px] flex flex-col space-y-1"><div class="grid grid-cols-4 gap-1.5 px-2 py-2 rounded-lg bg-surface-container-low font-label-md text-label-md text-on-surface-variant text-center"><span class="text-left pl-1">평가 항목</span><span class="text-primary font-bold">규칙 기반</span><span class="">AI 1회</span><span class="">AI 2회</span></div><div class="grid grid-cols-4 gap-1.5 px-2 py-2.5 rounded-lg hover:bg-surface-container-low/60 transition-colors items-center text-center"><span class="font-body-sm text-body-sm text-on-surface text-left pl-1 truncate">업무 유형</span><span class="font-code-num text-code-num text-primary font-bold">83.3%</span><span class="font-code-num text-code-num text-on-surface">86.7%</span><span class="font-code-num text-code-num text-secondary font-bold">90.0%</span></div><div class="grid grid-cols-4 gap-1.5 px-2 py-2.5 rounded-lg hover:bg-surface-container-low/60 transition-colors items-center text-center"><span class="font-body-sm text-body-sm text-on-surface text-left pl-1 truncate">긴급도</span><span class="font-code-num text-code-num text-primary font-bold">90.0%</span><span class="font-code-num text-code-num text-on-surface">86.7%</span><span class="font-code-num text-code-num text-secondary font-bold">93.3%</span></div><div class="grid grid-cols-4 gap-1.5 px-2 py-2.5 rounded-lg hover:bg-surface-container-low/60 transition-colors items-center text-center"><span class="font-body-sm text-body-sm text-on-surface text-left pl-1 truncate">완전 일치율</span><span class="font-code-num text-code-num text-primary font-bold">76.7%</span><span class="font-code-num text-code-num text-on-surface">80.0%</span><span class="font-code-num text-code-num text-secondary font-bold">86.7%</span></div><div class="grid grid-cols-4 gap-1.5 px-2 py-2.5 rounded-lg hover:bg-surface-container-low/60 transition-colors items-center text-center"><span class="font-body-sm text-body-sm text-on-surface text-left pl-1 truncate">긴급도 누락</span><span class="font-code-num text-code-num text-secondary font-bold">0건</span><span class="font-code-num text-code-num text-error font-bold">1건</span><span class="font-code-num text-code-num text-secondary font-bold">0건</span></div></div>
+</div>
+</section>
+<!-- Detailed Error Analysis Section -->
+<section class="flex flex-col space-y-3">
+<!-- Section Top Header & CSV Trigger -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-md text-headline-md text-on-surface">오분류 상세 분석</h3>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-xs text-label-xs font-semibold">7건</span>
+</div>
+<button class="min-h-[44px] flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface active:bg-surface-variant transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span class="font-label-md text-label-md">CSV</span>
+</button>
+</div>
+<!-- Horizontally Scrollable Filter Chips -->
+<div class="w-full overflow-x-auto pb-1 -mx-margin px-margin">
+<div class="flex items-center gap-2 min-w-max"><button class="min-h-[44px] px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm" type="button"><span class="">전체</span><span class="bg-on-primary/20 px-1.5 py-0.2 rounded-full font-code-num text-[10px]">7</span></button><button class="min-h-[44px] px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button"><span class="">유형 오류</span><span class="bg-surface-container-highest px-1.5 py-0.2 rounded-full font-code-num text-[10px]">5</span></button><button class="min-h-[44px] px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button"><span class="">긴급도 오류</span><span class="bg-surface-container-highest px-1.5 py-0.2 rounded-full font-code-num text-[10px]">3</span></button></div>
+</div>
+<!-- Error Items Stack (Mobile Readable Cards) -->
+<div class="flex flex-col space-y-3"><article class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col space-y-3"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="font-code-num text-code-num font-bold text-primary">#04</span><span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-xs text-label-xs font-semibold">긴급도 오류</span></div></div><div class="p-3 rounded-lg bg-surface-container-low"><p class="font-body-md text-body-md text-on-surface leading-snug font-medium">“네이버 플레이스 진료시간이 잘못 기재되어 환자 헛걸음 민원 발생했습니다.”</p></div><div class="grid grid-cols-2 gap-2 text-left"><div class="p-2.5 rounded-lg bg-surface-container/50 flex flex-col space-y-1"><span class="font-label-xs text-label-xs text-secondary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">check_circle</span> 정답</span><span class="font-body-sm text-body-sm font-semibold text-on-surface">콘텐츠 수정 / <span class="text-error font-bold">높음</span></span></div><div class="p-2.5 rounded-lg bg-error-container/40 flex flex-col space-y-1"><span class="font-label-xs text-label-xs text-error font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">cancel</span> 규칙 분류</span><span class="font-body-sm text-body-sm font-semibold text-on-surface">콘텐츠 수정 / 보통</span></div></div></article><article class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col space-y-3"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="font-code-num text-code-num font-bold text-primary">#12</span><span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-xs text-label-xs font-semibold">업무 유형 오류</span></div></div><div class="p-3 rounded-lg bg-surface-container-low"><p class="font-body-md text-body-md text-on-surface leading-snug font-medium">“인플루언서 10명 이번 주 금요일까지 블로그 리뷰 업로드 일정 확인 요망”</p></div><div class="grid grid-cols-2 gap-2 text-left"><div class="p-2.5 rounded-lg bg-surface-container/50 flex flex-col space-y-1"><span class="font-label-xs text-label-xs text-secondary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">check_circle</span> 정답</span><span class="font-body-sm text-body-sm font-semibold text-on-surface"><span class="text-primary font-bold">체험단 운영</span> / 보통</span></div><div class="p-2.5 rounded-lg bg-error-container/40 flex flex-col space-y-1"><span class="font-label-xs text-label-xs text-error font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">cancel</span> 규칙 분류</span><span class="font-body-sm text-body-sm font-semibold text-on-surface">콘텐츠 제작 / 보통</span></div></div></article><article class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col space-y-3"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="font-code-num text-code-num font-bold text-primary">#19</span><span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-xs text-label-xs font-semibold">업무 유형 오류</span></div></div><div class="p-3 rounded-lg bg-surface-container-low"><p class="font-body-md text-body-md text-on-surface leading-snug font-medium">“원내 대기실 모니터에 재생할 9월 홍보 영상 자막 싱크 재확인”</p></div><div class="grid grid-cols-2 gap-2 text-left"><div class="p-2.5 rounded-lg bg-surface-container/50 flex flex-col space-y-1"><span class="font-label-xs text-label-xs text-secondary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">check_circle</span> 정답</span><span class="font-body-sm text-body-sm font-semibold text-on-surface"><span class="text-primary font-bold">원내 홍보</span> / 낮음</span></div><div class="p-2.5 rounded-lg bg-error-container/40 flex flex-col space-y-1"><span class="font-label-xs text-label-xs text-error font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">cancel</span> 규칙 분류</span><span class="font-body-sm text-body-sm font-semibold text-on-surface">영상 제작 / 보통</span></div></div></article></div>
+</section>
+<!-- Interactive script for filter chips state toggle & re-run visual cue -->
+<script>
+    document.querySelectorAll('.min-w-max button').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.min-w-max button').forEach(btn => {
+          btn.className = 'min-h-[44px] px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1 transition-colors';
+          const badge = btn.querySelector('span:last-child');
+          if (badge) badge.className = 'bg-surface-container-highest px-1.5 py-0.2 rounded-full font-code-num text-[10px]';
+        });
+        button.className = 'min-h-[44px] px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1 shadow-sm';
+        const activeBadge = button.querySelector('span:last-child');
+        if (activeBadge) activeBadge.className = 'bg-on-primary/20 px-1.5 py-0.2 rounded-full font-code-num text-[10px]';
+      });
+    });
+  </script>
+</div></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">HIPAA &amp; 의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4.0-med</span></div></footer>
+
+</body></html>
+
+<!-- 모바일 업무 분류 (분류 중 로딩 상태) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Task Classification</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-20">
+<!-- Status Micro-Banner -->
+
+<!-- Input Card (Disabled/Processing State) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-4 flex flex-col gap-3 relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]">edit_note</span>
+<label class="font-title-sm text-title-sm tracking-tight">마케팅 요청 입력</label>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-num">접수 채널: 원내 인트라넷</span>
+</div>
+<!-- Active Textarea Surface (Readonly/Disabled look during processing) -->
+<div class="relative bg-surface-container-low rounded-lg p-3">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed min-h-[76px] select-none">
+        홈페이지 이벤트 배너에 잘못된 가격이 표시되어 있습니다. 오늘 중으로 수정 부탁드립니다.
+      </p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+<span class="font-label-xs text-label-xs">개인 식별 정보(PII) 없음</span>
+</div>
+<span class="font-code-num text-code-num text-on-surface-variant">49 / 500자</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 h-10 px-4 rounded-lg bg-primary-container text-on-primary font-title-sm text-title-sm flex items-center justify-center gap-2 opacity-95 cursor-not-allowed shadow-sm" disabled="">
+<svg class="animate-spin h-4 w-4 text-on-primary" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+<path class="opacity-90" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+<span class="">업무를 분류하고 있습니다...</span>
+</button>
+<button aria-label="초기화" class="h-10 w-10 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center opacity-40 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+</div>
+</div>
+<!-- Reassuring Clinical AI Loading Card -->
+<div class="mt-4 bg-surface-container-lowest rounded-xl shadow-sm p-4 flex flex-col gap-4 relative overflow-hidden">
+<!-- Shimmer Scan Bar -->
+<div class="absolute inset-x-0 top-0 h-1 bg-surface-container overflow-hidden">
+<div class="h-full bg-primary w-1/3 animate-[pulse_1.2s_ease-in-out_infinite] translate-x-1/2 rounded-full"></div>
+</div>
+<!-- Header with Pulse Indicator -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2 min-w-0">
+<div class="relative flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[18px] animate-spin">sync</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-title-sm text-title-sm text-on-surface truncate">실시간 맥락 및 긴급도 분석 중</h3>
+
+</div>
+</div>
+<span class="font-code-num text-label-xs px-2 py-0.5 rounded bg-secondary-fixed/40 text-on-secondary-fixed font-medium">EST 0.5s</span>
+</div>
+<!-- Step Progress Checklist -->
+<div class="flex flex-col gap-2.5 bg-surface-container-low rounded-lg p-3.5">
+<!-- Step 1: Complete -->
+<div class="flex items-start gap-2.5">
+<div class="w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[13px] font-bold">check</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface font-medium truncate">요청 문장 전처리 및 개인정보 마스킹</p>
+<p class="font-label-xs text-label-xs text-secondary flex items-center gap-1 mt-0.5">
+<span class="">완료</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+<span class="">민감 환자 식별 정보(PII) 0건 감지</span>
+</p>
+</div>
+</div>
+<!-- Connecting Trace 1 -->
+<div class="w-0.5 h-2 bg-secondary ml-2.5 -my-1 rounded-full"></div>
+<!-- Step 2: In-Progress -->
+<div class="flex items-start gap-2.5 bg-surface-container-lowest rounded-lg p-2 shadow-sm">
+<div class="w-5 h-5 rounded-full bg-primary/15 text-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[13px] animate-spin">refresh</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm text-primary font-semibold truncate">마케팅 업무 유형 키워드 매칭 및 가중치 계산</p>
+<div class="flex items-center gap-1.5 mt-1"><span class="font-label-xs text-label-xs text-primary font-medium">가중치 산출 중...</span></div>
+</div>
+</div>
+<!-- Connecting Trace 2 -->
+<div class="w-0.5 h-2 bg-outline-variant ml-2.5 -my-1 rounded-full"></div>
+<!-- Step 3: Pending -->
+<div class="flex items-start gap-2.5 opacity-65">
+<div class="w-5 h-5 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">의료 마케팅 규정 및 긴급도 SLA 판별</p>
+<p class="font-label-xs text-label-xs text-on-surface-variant mt-0.5">대기 중</p>
+</div>
+</div>
+</div>
+<!-- Live Metrics Wireframe Pulse -->
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-surface-container-low rounded-lg p-2.5 flex flex-col gap-1.5 animate-pulse">
+<div class="h-3 w-16 bg-surface-container rounded"></div>
+<div class="h-5 w-24 bg-surface-container-high rounded"></div>
+<div class="h-2 w-20 bg-surface-container rounded mt-0.5"></div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2.5 flex flex-col gap-1.5 animate-pulse">
+<div class="h-3 w-14 bg-surface-container rounded"></div>
+<div class="h-5 w-20 bg-surface-container-high rounded"></div>
+<div class="h-2 w-16 bg-surface-container rounded mt-0.5"></div>
+</div>
+</div>
+<!-- Assurance & Safety Footnote -->
+
+</div>
+<!-- Realtime Engine Status Pill -->
+
+</div>
+<script>
+  (function() {
+    // Subtle cyclical step micro-animation simulation for delight
+    let stepCount = 0;
+    const interval = setInterval(() => {
+      stepCount++;
+      if (stepCount > 10) clearInterval(interval);
+    }, 1200);
+  })();
+</script></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">HIPAA &amp; 의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4.0-med</span></div></footer>
+
+</body></html>
+
+<!-- 모바일 성능 평가 (채점 진행 중) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Performance Evaluation</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-20">
+<!-- Dynamic Top State Header -->
+<div class="flex flex-col gap-space-xs pt-space-sm pb-space-md">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-xs text-label-xs uppercase tracking-wider font-semibold">BENCHMARK SUITE</span>
+</div>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[14px]">memory</span>
+<span class="font-code-num text-label-xs">Rule Engine v2</span>
+</div>
+</div>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight mt-1">
+      분류 성능 평가
+    </h1>
+
+</div>
+<!-- Primary Evaluation Progress Card -->
+<section class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md mb-space-md relative overflow-hidden">
+<div class="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-primary/5 blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="flex h-2.5 w-2.5 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+<span class="font-title-sm text-title-sm text-primary font-bold">실시간 채점 진행 중</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant mt-0.5">기준 데이터셋: 골든 샘플 30건 (100% 라벨링 완료본)</span>
+</div>
+<span class="px-2 py-1 rounded-md bg-primary-fixed text-on-primary-fixed font-code-num text-label-xs font-semibold">
+        70.0%
+      </span>
+</div>
+<!-- Quantitative Progress Bar -->
+<div class="flex flex-col gap-1.5 my-space-xs">
+<div class="flex justify-between items-center text-label-xs font-label-xs">
+<span class="text-on-surface font-semibold flex items-center gap-1">
+<span class="font-code-num text-primary font-bold text-body-sm">21</span>
+<span class="text-on-surface-variant">/ 30개 문장 분석 중</span>
+</span>
+<span class="text-on-surface-variant flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[13px] text-primary animate-spin">timelapse</span>
+<span class="">남은 시간 약 <strong class="font-code-num text-on-surface">1.2초</strong></span>
+</span>
+</div>
+<!-- Animated Track -->
+<div class="w-full h-2.5 bg-surface-container-low rounded-full overflow-hidden p-0.5 flex items-center">
+<div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full relative transition-all duration-300" style="width: 70%">
+<div class="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.25)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.25)_50%,rgba(255,255,255,0.25)_75%,transparent_75%,transparent)] bg-[length:16px_16px] animate-[pulse_1.5s_infinite]"></div>
+</div>
+</div>
+</div>
+<!-- Active Button Zone -->
+<div class="flex flex-col gap-2 mt-space-sm">
+<button class="w-full h-11 px-4 rounded-lg bg-primary-container text-on-primary font-title-sm text-body-md flex items-center justify-center gap-2 cursor-wait shadow-sm transition" disabled="">
+<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+<span class="">30개 문장 정밀 채점 진행 중...</span>
+</button>
+<button class="w-full py-1.5 text-center font-label-xs text-label-xs text-on-surface-variant hover:text-error transition flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+<span class="">평가 프로세스 중단</span>
+</button>
+</div>
+</section>
+<!-- Live Micro-Pipeline Stream -->
+<section class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md mb-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">hub</span>
+<h2 class="font-title-sm text-title-sm text-on-surface">실시간 파이프라인 가동 현황</h2>
+</div>
+<span class="font-code-num text-label-xs text-secondary font-semibold bg-secondary-fixed/40 px-2 py-0.5 rounded">
+        STEP 2/3
+      </span>
+</div>
+<div class="flex flex-col gap-3 relative">
+<!-- Continuous visual pipeline stem -->
+<div class="absolute left-3.5 top-3.5 bottom-3.5 w-0.5 bg-surface-container -z-0"></div>
+<!-- Step 1: Complete -->
+<div class="flex items-start gap-space-sm relative z-10">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center flex-shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1 pt-0.5">
+<div class="flex items-center justify-between">
+
+<span class="font-code-num text-label-xs text-secondary font-medium">완료 (30건)</span>
+</div>
+
+</div>
+</div>
+<!-- Step 2: Currently Active -->
+<div class="flex items-start gap-space-sm relative z-10 bg-surface-container-low p-2.5 rounded-lg -mx-1">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center flex-shrink-0 animate-pulse shadow-sm">
+<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-body-sm text-primary font-bold">규칙 엔진 배치 추론 &amp; 매칭</span>
+<span class="font-code-num text-label-xs text-primary font-bold">#21 검증 중</span>
+</div>
+<!-- Live Snippet Preview -->
+<div class="mt-1.5 p-2 rounded bg-surface-container-lowest text-on-surface">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-xs text-label-xs text-primary font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">chat_bubble</span> 현재 분석 문장
+              </span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant font-code-num text-label-xs">ID: 21</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface line-clamp-2 italic">
+              "원내 대기실 모니터에 재생할 9월 홍보 영상 최종 자막 오타 교정 요청..."
+            </p>
+<div class="flex items-center gap-1 mt-1.5">
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed/50 text-on-secondary-fixed font-label-xs text-label-xs">콘텐츠 제작</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs">보통</span>
+<span class="font-label-xs text-label-xs text-secondary ml-auto flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">verified</span> 규칙 100% 일치
+              </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex items-start gap-space-sm relative z-10 opacity-60">
+<div class="w-7 h-7 rounded-full bg-surface-container text-outline flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">hourglass_empty</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1 pt-0.5">
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-body-sm text-on-surface">혼돈 행렬(Confusion Matrix) 종합 집계</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">대기 중</span>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+<!-- Real-time Live Metric Cards (2x2 Grid) -->
+<section class="flex flex-col mb-space-md">
+<div class="flex items-center justify-between mb-space-xs px-0.5">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<h2 class="font-title-sm text-title-sm text-on-surface">중간 산출 지표 (실시간 21건 반영)</h2>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px] text-secondary">sync</span> 실시간 갱신
+      </span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<!-- Metric 1: Category Accuracy -->
+<div class="flex flex-col p-3 rounded-xl bg-surface-container-lowest shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant">업무 유형 정확도</span>
+<span class="flex h-1.5 w-1.5 rounded-full bg-primary"></span>
+</div>
+<div class="flex items-baseline gap-1 mt-1 mb-0.5">
+<span class="font-headline-lg text-headline-lg text-primary font-bold font-code-num">85.7</span>
+<span class="font-title-sm text-title-sm text-primary">%</span>
+</div>
+<div class="flex items-center justify-between text-label-xs font-label-xs text-on-surface-variant">
+<span class="font-code-num text-on-surface">18 / 21 건</span>
+
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 85.7%"></div>
+</div>
+</div>
+<!-- Metric 2: Urgency Accuracy -->
+<div class="flex flex-col p-3 rounded-xl bg-surface-container-lowest shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant">긴급도 판별 정확도</span>
+<span class="flex h-1.5 w-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="flex items-baseline gap-1 mt-1 mb-0.5">
+<span class="font-headline-lg text-headline-lg text-secondary font-bold font-code-num">90.5</span>
+<span class="font-title-sm text-title-sm text-secondary">%</span>
+</div>
+<div class="flex items-center justify-between text-label-xs font-label-xs text-on-surface-variant">
+<span class="font-code-num text-on-surface">19 / 21 건</span>
+
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 90.5%"></div>
+</div>
+</div>
+<!-- Metric 3: Exact Match -->
+<div class="flex flex-col p-3 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant">동시 완전 일치율</span>
+<span class="material-symbols-outlined text-[14px] text-outline">done_all</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1 mb-0.5">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold font-code-num">81.0</span>
+<span class="font-title-sm text-title-sm text-on-surface">%</span>
+</div>
+<div class="flex items-center justify-between text-label-xs font-label-xs text-on-surface-variant">
+<span class="font-code-num text-on-surface">17 / 21 건</span>
+<span class="text-on-surface-variant">유형+긴급도</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-on-surface-variant h-full rounded-full transition-all duration-500" style="width: 81.0%"></div>
+</div>
+</div>
+<!-- Metric 4: Critical Missing Safety Guard -->
+<div class="flex flex-col p-3 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant">위험사고 긴급도 누락</span>
+<span class="px-1.5 py-0.2 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-xs font-bold text-[10px]">방어 중</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1 mb-0.5">
+<span class="font-headline-lg text-headline-lg text-secondary font-bold font-code-num">0</span>
+<span class="font-title-sm text-title-sm text-secondary">건</span>
+</div>
+
+<div class="w-full bg-surface-container h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Detected Exceptions / Misclassifications -->
+<section class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md mb-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="flex h-2 w-2 rounded-full bg-error animate-ping"></span>
+<h2 class="font-title-sm text-title-sm text-on-surface">실시간 오분류 탐지 로그</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-xs text-label-xs font-semibold">
+        현재 2건 식별됨
+      </span>
+</div>
+<div class="flex flex-col gap-2.5">
+<!-- Exception Item 1 -->
+<div class="flex flex-col p-3 rounded-lg bg-surface-container-low transition">
+<div class="flex items-center justify-between mb-1">
+<span class="font-code-num text-label-xs font-bold text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> 문장 #04 불일치
+          </span>
+<span class="text-label-xs font-label-xs text-on-surface-variant">긴급도 과소평가</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium mb-2 leading-snug">
+          "네이버 플레이스 진료시간이 잘못 기재되어 환자분들이 헛걸음하고 항의가 심각합니다."
+        </p>
+<div class="grid grid-cols-2 gap-2 text-label-xs font-label-xs pt-2 border-t-0">
+<div class="flex flex-col bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant font-medium mb-0.5">정답 (Ground Truth)</span>
+<div class="flex items-center gap-1">
+<span class="font-semibold text-on-surface">채널 관리</span>
+<span class="px-1 rounded bg-error-container text-on-error-container font-bold">긴급: 높음</span>
+</div>
+</div>
+<div class="flex flex-col bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant font-medium mb-0.5">규칙 엔진 예측</span>
+<div class="flex items-center gap-1">
+<span class="font-semibold text-on-surface">채널 관리</span>
+<span class="px-1 rounded bg-surface-container-high text-on-surface-variant">보통</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Shimmer Placeholder for Remaining Analyses -->
+
+</div>
+</section>
+<!-- Security & HIPAA Compliance Safe Guard -->
+
+</div></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">HIPAA &amp; 의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4.0-med</span></div></footer>
+
+</body></html>
+
+<!-- 모바일 성능 평가 (Gemini AI 채점 진행 중) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Performance Evaluation</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a class="flex items-center justify-center min-h-[44px] font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface text-primary font-title-sm border-b-2 border-primary bg-primary/5" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-20 space-y-space-md">
+<!-- Top Hero Context Card -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-md shadow-sm relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-40 h-40 bg-gradient-to-br from-primary-fixed to-secondary-container rounded-full blur-2xl opacity-40 pointer-events-none"></div>
+<div class="flex flex-col relative z-10 space-y-space-xs">
+<div class="inline-flex items-center gap-1.5 self-start px-2.5 py-1 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[15px] animate-spin" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-xs text-label-xs uppercase tracking-wider">GEMINI 1.5 PRO BATCH EVALUATION</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">AI 정밀 채점 진행 중</h2>
+
+</div>
+</div>
+<!-- Key Progress & Stream Execution Card -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="font-title-sm text-title-sm text-on-surface">Gemini API 스트리밍 추론 중</span>
+</div>
+<span class="font-code-num text-code-num text-primary bg-primary/10 px-2 py-0.5 rounded-full">60.0%</span>
+</div>
+<!-- Metric Counter & Timer -->
+<div class="flex items-end justify-between">
+<div>
+<div class="font-label-xs text-label-xs text-on-surface-variant">처리 현황</div>
+<div class="font-title-sm text-title-sm text-on-surface">
+<span class="font-headline-md text-headline-md text-primary">18</span>
+<span class="text-on-surface-variant">/ 30개 문장 LLM 분석 완료</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span class="font-code-num text-code-num">예상 완료 약 2.8초</span>
+</div>
+</div>
+<!-- Visual Animated Progress Bar -->
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden relative">
+<div class="bg-gradient-to-r from-primary to-primary-container h-full rounded-full transition-all duration-500 ease-out" style="width: 60%;">
+<div class="w-full h-full bg-[linear-gradient(45deg,rgba(255,255,255,0.25)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.25)_50%,rgba(255,255,255,0.25)_75%,transparent_75%,transparent)] bg-[length:16px_16px] animate-[progress-pulse_1.2s_linear_infinite]"></div>
+</div>
+</div>
+<!-- Actions -->
+<div class="space-y-space-xs pt-1">
+<button class="w-full py-2.5 px-4 rounded-lg bg-primary-container text-on-primary font-title-sm text-title-sm flex items-center justify-center gap-2 opacity-90 cursor-not-allowed shadow-sm" disabled="">
+<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span>
+<span class="">Gemini AI 배치 채점 진행 중...</span>
+</button>
+<button class="w-full py-2 px-3 rounded-lg text-error hover:bg-error-container/20 font-body-sm text-body-sm transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">stop_circle</span>
+<span class="">AI 평가 프로세스 중단</span>
+</button>
+</div>
+</div>
+<!-- Multi-step AI Pipeline Status (2/3) -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm"><div class="flex items-center justify-between"><h3 class="font-title-sm text-title-sm text-on-surface">평가 파이프라인</h3><span class="font-code-num text-code-num text-primary font-semibold px-2 py-0.5 rounded bg-primary/10">Step 2 / 3</span></div><div class="grid grid-cols-3 gap-2 pt-1"><div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-xs text-label-xs text-on-surface-variant font-medium">1. 프롬프트 로드</span><span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span></div><span class="font-label-xs text-label-xs text-secondary font-semibold">완료</span></div><div class="p-2.5 rounded-lg bg-surface-container border-l-4 border-primary flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-xs text-label-xs text-on-surface font-semibold">2. API 비동기 추론</span><span class="material-symbols-outlined text-primary text-[16px] animate-spin">sync</span></div><span class="font-label-xs text-label-xs text-primary font-semibold">#18 분석 중 (60%)</span></div><div class="p-2.5 rounded-lg bg-surface-container-low opacity-60 flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-xs text-label-xs text-on-surface-variant">3. 교차 검증</span><span class="material-symbols-outlined text-on-surface-variant text-[16px]">radio_button_unchecked</span></div><span class="font-label-xs text-label-xs text-on-surface-variant">대기</span></div></div></div>
+<!-- Intermediate Real-time Benchmark Metrics (18/30건 집계) -->
+
+<!-- Live AI Difference Discovery Log -->
+
+<!-- HIPAA & Security Notice Box -->
+<div class="w-full bg-surface-container-low p-3.5 rounded-xl flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">lock</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Google Cloud Enterprise HIPAA BAA 준수</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mt-0.5">
+        전송된 문장 데이터는 암호화 전용 세션에서 격리 처리되며, 기반 LLM 파운데이션 모델 학습에 일절 재사용되지 않습니다.
+      </p>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for active navigation state
+  (function () {
+    const navLinks = document.querySelectorAll('header nav a');
+    navLinks.forEach((link) => {
+      const path = link.getAttribute('data-path');
+      if (path === 'performance-evaluation') {
+        link.classList.add('text-primary', 'font-title-sm', 'border-b-2', 'border-primary', 'bg-primary/5');
+        link.classList.remove('text-on-surface-variant');
+      } else {
+        link.classList.remove('text-primary', 'font-title-sm', 'border-b-2', 'border-primary', 'bg-primary/5');
+        link.classList.add('text-on-surface-variant');
+      }
+    });
+  })();
+</script></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">HIPAA &amp; 의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4.0-med</span></div></footer>
+
+</body></html>
+
+<!-- 모바일 성능 평가 (규칙 vs Gemini 비교 완료) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Performance Evaluation</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-20">
+<div class="w-full py-space-sm"><div class="flex items-center justify-between mb-2"><div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-semibold"><span class="material-symbols-outlined text-[14px]">analytics</span>벤치마크 결과</div><span class="font-label-xs text-label-xs text-on-surface-variant font-code-num">총 30개 검증 문장</span></div><h2 class="font-headline-md text-headline-md text-on-surface font-semibold">규칙 vs Gemini AI 비교 분석</h2><p class="font-label-xs text-label-xs text-on-surface-variant mt-1">골드 스탠다드 데이터셋 기준 정밀 성능 평가 리포트</p></div>
+<div class="w-full bg-surface-container-low rounded-xl p-space-md mb-space-md shadow-sm"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-xs text-on-surface font-semibold">채점 완료</span><span class="font-code-num text-label-xs text-outline">15:10</span></div><div class="flex items-center gap-2"><button class="h-8 px-2.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-xs text-label-xs flex items-center gap-1 active:bg-surface-container transition-colors shadow-sm" type="button"><span class="material-symbols-outlined text-[14px] text-on-surface-variant">replay</span>재실행</button><button class="h-8 px-2.5 rounded-lg bg-primary-container text-on-primary font-label-xs text-label-xs flex items-center gap-1 active:opacity-90 shadow-sm" type="button"><span class="material-symbols-outlined text-[14px]">auto_awesome</span>Gemini 재채점</button><button class="h-8 px-2 rounded-lg bg-surface-container text-on-surface-variant font-label-xs text-label-xs flex items-center gap-1 active:bg-surface-container-high" type="button" title="내보내기"><span class="material-symbols-outlined text-[15px]">download</span></button></div></div></div>
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 via-surface-container to-secondary-container/30 p-space-md mb-space-md shadow-sm"><div class="flex items-center justify-between"><div class="flex items-center gap-2.5"><div class="w-7 h-7 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[16px]">trending_up</span></div><div><span class="font-title-sm text-title-sm text-on-surface font-semibold">전체 정확도 +8.7%p 향상</span><p class="font-label-xs text-label-xs text-on-surface-variant">복합 문장 오분류 4건 교정 해결</p></div></div><div class="shrink-0 text-right"><span class="font-code-num text-title-sm font-semibold text-primary px-2 py-1 rounded-md bg-surface-container-lowest/80">+8.7%p</span></div></div></div>
+<div class="grid grid-cols-2 gap-space-sm mb-space-lg"><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs text-on-surface-variant font-medium">업무 유형 정확도</span><span class="font-label-xs text-label-xs text-secondary font-semibold">+10.0%p</span></div><div class="font-headline-md text-headline-md text-on-surface font-code-num font-semibold mb-2">93.3%</div><div class="bg-surface-container-low/50 rounded-lg p-2 flex justify-between items-center font-label-xs text-label-xs"><span class="text-primary font-semibold font-code-num">Gemini 28건</span><span class="text-outline font-code-num">규칙 25건</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs text-on-surface-variant font-medium">긴급도 판별 정확도</span><span class="font-label-xs text-label-xs text-secondary font-semibold">+6.7%p</span></div><div class="font-headline-md text-headline-md text-on-surface font-code-num font-semibold mb-2">96.7%</div><div class="bg-surface-container-low/50 rounded-lg p-2 flex justify-between items-center font-label-xs text-label-xs"><span class="text-primary font-semibold font-code-num">Gemini 29건</span><span class="text-outline font-code-num">규칙 27건</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs text-on-surface-variant font-medium">완전 일치율</span><span class="font-label-xs text-label-xs text-secondary font-semibold">+13.3%p</span></div><div class="font-headline-md text-headline-md text-on-surface font-code-num font-semibold mb-2">90.0%</div><div class="bg-surface-container-low/50 rounded-lg p-2 flex justify-between items-center font-label-xs text-label-xs"><span class="text-primary font-semibold font-code-num">Gemini 27건</span><span class="text-outline font-code-num">규칙 23건</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs text-on-surface-variant font-medium">중요사고 누락</span><span class="font-label-xs text-label-xs text-secondary font-semibold">완전 방어</span></div><div class="font-headline-md text-headline-md text-secondary font-code-num font-semibold mb-2">0건</div><div class="bg-surface-container-low/50 rounded-lg p-2 flex justify-between items-center font-label-xs text-label-xs"><span class="text-secondary font-semibold font-code-num">Gemini 0건</span><span class="text-secondary font-code-num">규칙 0건</span></div></div></div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md mb-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-sm"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">table_chart</span><h3 class="font-title-sm text-title-sm text-on-surface font-semibold">종합 지표 대조표</h3></div><span class="font-label-xs text-label-xs text-outline font-code-num">30 items</span></div>
+<div class="overflow-x-auto -mx-space-md px-space-md pb-2">
+<table class="w-full min-w-[520px] text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-xs text-label-xs">
+<th class="py-2.5 px-3 rounded-l-lg">평가 지표</th>
+<th class="py-2.5 px-3">규칙 기반</th>
+<th class="py-2.5 px-3">Gemini 1회</th>
+<th class="py-2.5 px-3">Gemini 2회(최종)</th>
+<th class="py-2.5 px-3 rounded-r-lg text-right">판정</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">업무 유형 정확도</td>
+<td class="py-3 px-3 font-code-num text-outline">83.3%</td>
+<td class="py-3 px-3 font-code-num">90.0%</td>
+<td class="py-3 px-3 font-code-num font-semibold text-primary">93.3%</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">Gemini 우세</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">긴급도 판별 정확도</td>
+<td class="py-3 px-3 font-code-num text-outline">90.0%</td>
+<td class="py-3 px-3 font-code-num">93.3%</td>
+<td class="py-3 px-3 font-code-num font-semibold text-primary">96.7%</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">Gemini 우세</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">완전 일치율</td>
+<td class="py-3 px-3 font-code-num text-outline">76.7%</td>
+<td class="py-3 px-3 font-code-num">86.7%</td>
+<td class="py-3 px-3 font-code-num font-semibold text-primary">90.0%</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">Gemini 우세</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">중요 사고 긴급도 누락</td>
+<td class="py-3 px-3 font-code-num text-secondary">0건</td>
+<td class="py-3 px-3 font-code-num text-secondary">0건</td>
+<td class="py-3 px-3 font-code-num text-secondary font-semibold">0건</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-xs text-label-xs font-semibold">양측 안전</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">평균 처리 속도</td>
+<td class="py-3 px-3 font-code-num text-secondary font-semibold">0.05초</td>
+<td class="py-3 px-3 font-code-num text-outline">0.42초</td>
+<td class="py-3 px-3 font-code-num text-outline">0.38초</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-xs text-label-xs font-semibold">규칙 우세(초고속)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="w-full mb-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface">오분류 및 AI 교정 상세 분석</h3>
+<p class="font-label-xs text-label-xs text-on-surface-variant">실제 판정 불일치 케이스 원인 대조</p>
+</div>
+<button class="h-8 px-2.5 rounded-lg bg-surface-container-low text-on-surface font-label-xs text-label-xs flex items-center gap-1 active:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[14px]">download</span>
+<span class="">CSV 다운로드</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 overflow-x-auto pb-space-sm mb-space-sm">
+<button class="px-3 py-1 rounded-full bg-primary text-on-primary font-label-xs text-label-xs shrink-0 font-semibold shadow-sm" type="button">전체 30건</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs shrink-0 active:bg-surface-container-high" type="button">AI 교정 성공 4건</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs shrink-0 active:bg-surface-container-high" type="button">규칙/AI 불일치 3건</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs shrink-0 active:bg-surface-container-high" type="button">공통 미해결 1건</button>
+</div>
+<div class="space-y-space-sm"><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-1.5"><span class="font-code-num text-label-xs font-semibold text-primary">#04</span><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">긴급도 교정 · AI 우세</span></div><span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span></div><p class="font-body-sm text-body-sm text-on-surface font-semibold bg-surface-container-low/40 p-2.5 rounded-lg mb-2.5">“네이버 플레이스 진료시간이 잘못 기재되어 환자 헛걸음 민원 발생했습니다.”</p><div class="grid grid-cols-3 gap-1.5 text-center"><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant">정답(Gold)</span><span class="font-label-xs text-label-xs font-semibold text-on-surface">콘텐츠 수정</span><span class="block font-label-xs text-label-xs text-secondary font-semibold">높음</span></div><div class="bg-error-container/40 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-error">규칙 결과</span><span class="font-label-xs text-label-xs text-on-surface">콘텐츠 수정</span><span class="block font-label-xs text-label-xs text-error font-semibold">보통 (오분류)</span></div><div class="bg-secondary-container/50 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-secondary-container">Gemini AI</span><span class="font-label-xs text-label-xs text-on-surface">콘텐츠 수정</span><span class="block font-label-xs text-label-xs text-secondary font-semibold">높음 (일치)</span></div></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-1.5"><span class="font-code-num text-label-xs font-semibold text-primary">#12</span><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">유형 교정 · AI 우세</span></div><span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span></div><p class="font-body-sm text-body-sm text-on-surface font-semibold bg-surface-container-low/40 p-2.5 rounded-lg mb-2.5">“인플루언서 10명 이번 주 금요일까지 블로그 리뷰 업로드 일정 확인 요망”</p><div class="grid grid-cols-3 gap-1.5 text-center"><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant">정답(Gold)</span><span class="font-label-xs text-label-xs font-semibold text-on-surface">체험단 운영</span><span class="block font-label-xs text-label-xs text-on-surface-variant font-semibold">보통</span></div><div class="bg-error-container/40 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-error">규칙 결과</span><span class="font-label-xs text-label-xs text-error font-semibold">콘텐츠 제작</span><span class="block font-label-xs text-label-xs text-on-surface-variant">보통</span></div><div class="bg-secondary-container/50 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-secondary-container">Gemini AI</span><span class="font-label-xs text-label-xs text-secondary font-semibold">체험단 운영</span><span class="block font-label-xs text-label-xs text-on-surface-variant">보통</span></div></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-1.5"><span class="font-code-num text-label-xs font-semibold text-outline">#27</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs font-semibold">복합 요청 · 검토 필요</span></div><span class="material-symbols-outlined text-[16px] text-outline">help</span></div><p class="font-body-sm text-body-sm text-on-surface font-semibold bg-surface-container-low/40 p-2.5 rounded-lg mb-2.5">“원내 대기실 신규 도입 레이저 장비 안내 배너 시안 확인 및 도입 기념 할인 이벤트 홈페이지 팝업 긴급 배포”</p><div class="grid grid-cols-3 gap-1.5 text-center"><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant">정답(Gold)</span><span class="font-label-xs text-label-xs font-semibold text-on-surface">복합 업무</span><span class="block font-label-xs text-label-xs text-secondary font-semibold">높음</span></div><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant">규칙 결과</span><span class="font-label-xs text-label-xs text-on-surface">콘텐츠 수정</span><span class="block font-label-xs text-label-xs text-outline">보통</span></div><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant">Gemini AI</span><span class="font-label-xs text-label-xs text-on-surface">이벤트 기획</span><span class="block font-label-xs text-label-xs text-secondary font-semibold">높음</span></div></div></div></div>
+</div>
+
+</div></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">HIPAA &amp; 의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4.0-med</span></div></footer>
+
+</body></html>
+
+<!-- 모바일 성능 평가 (AI 교정 성공 필터 활성화) -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#c0c7d0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-fixed-dim": "#80d5cb", "error-container": "#ffdad6", "tertiary-fixed": "#dce3ec", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "secondary-fixed": "#9cf2e8", "inverse-on-surface": "#edf0ff", "on-primary-fixed": "#00174b", "secondary-container": "#99efe5", "surface-variant": "#d7e2ff", "on-tertiary-fixed": "#151c23", "surface-dim": "#cadaff", "on-primary-container": "#eeefff", "on-surface-variant": "#434655", "secondary": "#006a63", "on-error-container": "#93000a", "outline": "#737686", "inverse-surface": "#1d3052", "on-tertiary-fixed-variant": "#40484f", "on-secondary-container": "#006f67", "primary-fixed": "#dbe1ff", "background": "#f9f9ff", "primary-fixed-dim": "#b4c5ff", "on-tertiary-container": "#eaf1fa", "on-secondary-fixed-variant": "#00504a", "primary-container": "#2563eb", "surface-tint": "#0053db", "on-secondary-fixed": "#00201d", "surface-container-low": "#f1f3ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed-variant": "#003ea8", "on-background": "#041b3c", "primary": "#004ac6", "surface": "#f9f9ff", "surface-container-high": "#e0e8ff", "tertiary-container": "#676e76", "on-surface": "#041b3c", "inverse-primary": "#b4c5ff", "surface-container": "#e8edff", "surface-container-highest": "#d7e2ff", "tertiary": "#4e565d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-md": "1rem", "margin-desktop": "2rem", "gutter-desktop": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "title-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "code-num": ["JetBrains Mono", "monospace"], "body-lg": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-md": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "label-xs": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"], "headline-xl-mobile": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"] }, "fontSize": { "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "code-num": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-xs": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-28 flex flex-col justify-between px-margin"><div class="h-16 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MEDI TASK Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UV-LupXOFNYFDJs2jTZtXCTJgkEY8CQGrmjd0eo242I7zqPwMNJ78dlO5vKKWTJzswQftFeJCVUkJ335gVYH_E99ycCcn3_72YyP92gt2CsUlSKNLRGRl96xDJ35_EI3zeJHMdFE0SzxR-w9vY4Uxu4-p5iwu1KjDR6cgW4-kplQ41tLWkGhNFSd4FAxzTuPJFx1MDMIL1dSXM_6iw9yjUl3y60Eh9YmnC6Q_6uKNe"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-sm text-title-sm text-on-surface tracking-tight truncate">MEDI TASK</span><span class="hidden xs:inline-flex px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-label-xs">의료 마케팅 인텔리전스</span></div><span class="font-label-xs text-label-xs text-on-surface-variant truncate">Performance Evaluation</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-xs text-label-xs">규칙 기반</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="h-12 grid grid-cols-2 gap-space-xs" data-active-classes="text-primary font-title-sm border-b-2 border-primary bg-primary/5"><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="task-classification" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">checklist</span><span class="">업무 분류</span></a><a class="flex items-center justify-center min-h-[44px] text-on-surface-variant font-body-md text-body-md transition-colors rounded-t-lg hover:text-on-surface" data-path="performance-evaluation" href="#"><span class="material-symbols-outlined text-[18px] mr-1.5">analytics</span><span class="">성능 평가</span></a></nav></div></header><main class="flex flex-col relative w-full pt-28 bg-surface px-margin min-h-screen"><div class="flex flex-col w-full pb-20">
+<div class="w-full py-space-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span class="font-label-xs text-label-xs font-semibold tracking-wide">BENCHMARK SUITE COMPLETED</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-xs text-label-xs">
+<span class="material-symbols-outlined text-[13px]">auto_awesome</span>
+<span class="">Gemini AI 연동</span>
+</span>
+</div>
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">규칙 기반 vs Gemini AI 비교 분석</h2>
+
+</div>
+<div class="w-full bg-surface-container-low rounded-xl p-space-md mb-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md text-on-surface">최근 종합 채점 완료 (30/30개 문장)</span>
+</div>
+<span class="font-code-num text-code-num text-on-surface-variant">오늘 15:10</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="h-9 px-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 active:bg-surface-container transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">replay</span>
+<span class="">결과 재실행</span>
+</button>
+<button class="h-9 px-space-sm rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 active:opacity-90 transition-opacity shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+<span class="">Gemini 재채점</span>
+</button>
+</div>
+<div class="pt-space-sm flex justify-end">
+<button class="inline-flex items-center gap-1 font-label-xs text-label-xs text-primary active:opacity-75" type="button">
+<span class="material-symbols-outlined text-[14px]">file_download</span>
+<span class="">비교 리포트 PDF / CSV 내보내기</span>
+</button>
+</div>
+</div>
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 via-surface-container to-secondary-container/30 p-space-md mb-space-md shadow-sm"><div class="flex items-center justify-between gap-3"><div class="flex items-center gap-2.5 min-w-0"><div class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[18px]">insights</span></div><div><span class="font-title-sm text-title-sm text-on-surface font-semibold truncate block">Gemini AI 정확도 +8.7%p 향상</span><span class="font-label-xs text-label-xs text-on-surface-variant">복합 문장 오분류 4건 전량 교정 완료</span></div></div><span class="font-code-num text-code-num text-primary font-semibold px-2.5 py-1 rounded-full bg-primary/10 shrink-0">+8.7%p</span></div></div>
+<div class="grid grid-cols-2 gap-space-sm mb-space-lg"><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between"><div class="flex items-center justify-between mb-2"><span class="font-label-xs text-label-xs text-on-surface-variant">업무 유형 정확도</span><span class="material-symbols-outlined text-[18px] text-primary">category</span></div><div class="flex items-baseline justify-between"><span class="font-headline-md text-headline-md text-on-surface font-code-num">93.3%</span><span class="font-label-xs text-label-xs text-secondary font-semibold">▲ +10.0%p</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between"><div class="flex items-center justify-between mb-2"><span class="font-label-xs text-label-xs text-on-surface-variant">긴급도 판별 정확도</span><span class="material-symbols-outlined text-[18px] text-secondary">notifications_active</span></div><div class="flex items-baseline justify-between"><span class="font-headline-md text-headline-md text-on-surface font-code-num">96.7%</span><span class="font-label-xs text-label-xs text-secondary font-semibold">▲ +6.7%p</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between"><div class="flex items-center justify-between mb-2"><span class="font-label-xs text-label-xs text-on-surface-variant">완전 일치율</span><span class="material-symbols-outlined text-[18px] text-primary">done_all</span></div><div class="flex items-baseline justify-between"><span class="font-headline-md text-headline-md text-on-surface font-code-num">90.0%</span><span class="font-label-xs text-label-xs text-secondary font-semibold">▲ +13.3%p</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between"><div class="flex items-center justify-between mb-2"><span class="font-label-xs text-label-xs text-on-surface-variant">중요 사고 긴급도 누락</span><span class="material-symbols-outlined text-[18px] text-secondary">gpp_good</span></div><div class="flex items-baseline justify-between"><span class="font-headline-md text-headline-md text-on-surface font-code-num">0건</span><span class="font-label-xs text-label-xs text-secondary font-semibold">완전 방어</span></div></div></div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md mb-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">table_chart</span>
+<h3 class="font-title-sm text-title-sm text-on-surface">종합 벤치마크 지표 대조표</h3>
+</div>
+<span class="font-label-xs text-label-xs text-outline">가로 스크롤 가능</span>
+</div>
+<div class="overflow-x-auto -mx-space-md px-space-md pb-2">
+<table class="w-full min-w-[520px] text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-xs text-label-xs">
+<th class="py-2.5 px-3 rounded-l-lg">평가 지표</th>
+<th class="py-2.5 px-3">규칙 기반</th>
+<th class="py-2.5 px-3">Gemini 1회</th>
+<th class="py-2.5 px-3">Gemini 2회(최종)</th>
+<th class="py-2.5 px-3 rounded-r-lg text-right">판정</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">업무 유형 정확도</td>
+<td class="py-3 px-3 font-code-num text-outline">83.3%</td>
+<td class="py-3 px-3 font-code-num">90.0%</td>
+<td class="py-3 px-3 font-code-num font-semibold text-primary">93.3%</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">Gemini 우세</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">긴급도 판별 정확도</td>
+<td class="py-3 px-3 font-code-num text-outline">90.0%</td>
+<td class="py-3 px-3 font-code-num">93.3%</td>
+<td class="py-3 px-3 font-code-num font-semibold text-primary">96.7%</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">Gemini 우세</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">완전 일치율</td>
+<td class="py-3 px-3 font-code-num text-outline">76.7%</td>
+<td class="py-3 px-3 font-code-num">86.7%</td>
+<td class="py-3 px-3 font-code-num font-semibold text-primary">90.0%</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">Gemini 우세</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">중요 사고 긴급도 누락</td>
+<td class="py-3 px-3 font-code-num text-secondary">0건</td>
+<td class="py-3 px-3 font-code-num text-secondary">0건</td>
+<td class="py-3 px-3 font-code-num text-secondary font-semibold">0건</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-xs text-label-xs font-semibold">양측 안전</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low/40">
+<td class="py-3 px-3 font-semibold">평균 처리 속도</td>
+<td class="py-3 px-3 font-code-num text-secondary font-semibold">0.05초</td>
+<td class="py-3 px-3 font-code-num text-outline">0.42초</td>
+<td class="py-3 px-3 font-code-num text-outline">0.38초</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-xs text-label-xs font-semibold">규칙 우세(초고속)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="w-full mb-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface">오분류 및 AI 교정 상세 분석</h3>
+<p class="font-label-xs text-label-xs text-on-surface-variant">실제 판정 불일치 중 Gemini 교정 성공 케이스 4건 대조</p>
+</div>
+<button class="h-8 px-2.5 rounded-lg bg-surface-container-low text-on-surface font-label-xs text-label-xs flex items-center gap-1 active:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[14px]">download</span>
+<span class="">CSV 다운로드</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 overflow-x-auto pb-space-sm mb-space-sm"><button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs shrink-0 active:bg-surface-container-high transition-colors" type="button">전체 30건</button><button class="px-3 py-1 rounded-full bg-primary text-on-primary font-label-xs text-label-xs shrink-0 font-semibold shadow-sm inline-flex items-center gap-1" type="button"><span class="material-symbols-outlined text-[13px]">check</span><span class="">AI 교정 성공 4건</span></button><button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs shrink-0 active:bg-surface-container-high transition-colors" type="button">규칙/AI 불일치 3건</button><button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs shrink-0 active:bg-surface-container-high transition-colors" type="button">공통 미해결 1건</button></div>
+<div class="flex items-center justify-between py-1.5 px-3 rounded-lg bg-primary/10 text-primary mb-space-sm font-label-xs text-label-xs font-semibold"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">verified</span><span class="">AI 교정 4건 전량 성공 (+13.3%p 기여)</span></div><span class="font-code-num">4/4건 (100%)</span></div><div class="space-y-space-sm"><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-1.5"><span class="font-code-num text-code-num font-semibold text-primary">#04</span><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">긴급도 교정 성공 · AI 우세</span></div><span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span></div><p class="font-body-md text-body-md text-on-surface font-semibold bg-surface-container-low/40 p-2.5 rounded-lg mb-3">“네이버 플레이스 진료시간이 잘못 기재되어 환자 헛걸음 민원 발생했습니다.”</p><div class="grid grid-cols-3 gap-1.5 text-center mb-3"><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant mb-1">정답(Gold)</span><span class="font-label-xs text-label-xs font-semibold text-on-surface">콘텐츠 수정</span><span class="block font-label-xs text-label-xs text-secondary font-semibold">높음 (당일)</span></div><div class="bg-error-container/40 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-error mb-1">규칙 결과</span><span class="font-label-xs text-label-xs text-on-surface">콘텐츠 수정</span><span class="block font-label-xs text-label-xs text-error font-semibold">보통 (오분류)</span></div><div class="bg-secondary-container/50 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-secondary-container mb-1">Gemini AI</span><span class="font-label-xs text-label-xs text-on-surface">콘텐츠 수정</span><span class="block font-label-xs text-label-xs text-secondary font-semibold">높음 (정답 매칭)</span></div></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-1.5"><span class="font-code-num text-code-num font-semibold text-primary">#12</span><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">유형 교정 성공 · AI 우세</span></div><span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span></div><p class="font-body-md text-body-md text-on-surface font-semibold bg-surface-container-low/40 p-2.5 rounded-lg mb-3">“인플루언서 10명 이번 주 금요일까지 블로그 리뷰 업로드 일정 확인 요망”</p><div class="grid grid-cols-3 gap-1.5 text-center mb-3"><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant mb-1">정답(Gold)</span><span class="font-label-xs text-label-xs font-semibold text-on-surface">체험단 운영</span><span class="block font-label-xs text-label-xs text-on-surface-variant font-semibold">보통</span></div><div class="bg-error-container/40 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-error mb-1">규칙 결과</span><span class="font-label-xs text-label-xs text-error font-semibold">콘텐츠 제작</span><span class="block font-label-xs text-label-xs text-on-surface-variant">보통</span></div><div class="bg-secondary-container/50 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-secondary-container mb-1">Gemini AI</span><span class="font-label-xs text-label-xs text-secondary font-semibold">체험단 운영</span><span class="block font-label-xs text-label-xs text-on-surface-variant">보통</span></div></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-1.5"><span class="font-code-num text-code-num font-semibold text-primary">#19</span><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">유형 교정 성공 · AI 우세</span></div><span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span></div><p class="font-body-md text-body-md text-on-surface font-semibold bg-surface-container-low/40 p-2.5 rounded-lg mb-3">“원내 대기실 모니터에 재생할 9월 홍보 영상 자막 싱크 재확인”</p><div class="grid grid-cols-3 gap-1.5 text-center mb-3"><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant mb-1">정답(Gold)</span><span class="font-label-xs text-label-xs font-semibold text-on-surface">원내 홍보</span><span class="block font-label-xs text-label-xs text-on-surface-variant font-semibold">낮음</span></div><div class="bg-error-container/40 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-error mb-1">규칙 결과</span><span class="font-label-xs text-label-xs text-error font-semibold">영상 제작</span><span class="block font-label-xs text-label-xs text-on-surface-variant">낮음</span></div><div class="bg-secondary-container/50 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-secondary-container mb-1">Gemini AI</span><span class="font-label-xs text-label-xs text-secondary font-semibold">원내 홍보</span><span class="block font-label-xs text-label-xs text-on-surface-variant">낮음</span></div></div></div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-1.5"><span class="font-code-num text-code-num font-semibold text-primary">#23</span><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">긴급도 교정 성공 · AI 우세</span></div><span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span></div><p class="font-body-md text-body-md text-on-surface font-semibold bg-surface-container-low/40 p-2.5 rounded-lg mb-3">“비급여 시술 가격 인하 이벤트 배너 오탈자로 인한 심평원 고발성 문의 인입”</p><div class="grid grid-cols-3 gap-1.5 text-center mb-3"><div class="bg-surface-container-low p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-surface-variant mb-1">정답(Gold)</span><span class="font-label-xs text-label-xs font-semibold text-on-surface">법무/컴플레인</span><span class="block font-label-xs text-label-xs text-secondary font-semibold">높음 (즉각 대응)</span></div><div class="bg-error-container/40 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-error mb-1">규칙 결과</span><span class="font-label-xs text-label-xs text-on-surface">콘텐츠 수정</span><span class="block font-label-xs text-label-xs text-error font-semibold">보통 (오분류)</span></div><div class="bg-secondary-container/50 p-2 rounded-lg"><span class="block font-label-xs text-label-xs text-on-secondary-container mb-1">Gemini AI</span><span class="font-label-xs text-label-xs text-secondary font-semibold">법무/컴플레인</span><span class="block font-label-xs text-label-xs text-secondary font-semibold">높음 (정답 매칭)</span></div></div></div></div>
+</div>
+
+</div></main><footer class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="h-14 px-margin flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-label-xs text-label-xs text-on-surface-variant">HIPAA &amp; 의료법 준수 모드</span></div><span class="font-code-num text-code-num text-on-surface-variant">v2.4.0-med</span></div></footer>
+
+</body></html>
